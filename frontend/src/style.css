@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  /* Paleta inspirada en Gemini Dark Mode */
+  --color-app-bg: #1e1f20; /* Fondo principal */
+  --color-app-surface: #131314; /* Fondo del Sidebar y tarjetas */
+  --color-app-border: #444746; /* Bordes tenues */
+  --color-app-text: #e3e3e3; /* Texto general gris muy claro */
+  --color-app-text-muted: #c4c7c5; /* Texto secundario apagado */
+  --color-app-primary: #8ab4f8; /* Azul característico (modo oscuro) */
+  --color-app-primary-hover: #aecbfa; 
+  --color-app-primary-light: rgba(138, 180, 248, 0.1);
+  --color-app-success: #81c995; 
+  --color-app-success-light: rgba(129, 201, 149, 0.1);
+  --color-app-danger: #f28b82;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-app-bg);
+    color: var(--color-app-text);
+    font-family: 'Google Sans', 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    line-height: 1.6;
+    /* Removido el font-weight: bold global para imitar la limpieza de Gemini */
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #ffffff !important;
+    font-weight: 600 !important; /* Asegurar que los títulos sí destaquen */
+  }
+}
+
+/* KaTeX custom overrides for clean look in dark mode */
+.katex {
+  font-size: 1.1em !important;
+  color: var(--color-app-text) !important;
+}
+.katex-display {
+  margin: 1em 0;
+  padding: 1rem;
+  background-color: var(--color-app-surface);
+  border: 1px solid var(--color-app-border);
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
