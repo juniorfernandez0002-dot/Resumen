@@ -75,22 +75,39 @@
       />
     </section>
 
-    <!-- Tipos de Conjuntos / Operaciones Visuales -->
-    <section>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div class="bg-app-surface p-4 rounded-lg border border-app-border flex flex-col items-center justify-center text-center hover:border-app-primary transition-colors cursor-pointer">
-          <MathFormula math="A \cup B" />
-          <span class="text-xs text-app-text-muted mt-2">Unión</span>
-        </div>
-        <div class="bg-app-surface p-4 rounded-lg border border-app-border flex flex-col items-center justify-center text-center hover:border-app-primary transition-colors cursor-pointer">
-          <MathFormula math="A \cap B" />
-          <span class="text-xs text-app-text-muted mt-2">Intersección</span>
-        </div>
-        <div class="bg-app-surface p-4 rounded-lg border border-app-border flex flex-col items-center justify-center text-center hover:border-app-primary transition-colors cursor-pointer">
-          <MathFormula math="x \in A" />
-          <span class="text-xs text-app-text-muted mt-2">Pertenencia</span>
-        </div>
-      </div>
+      <SymbolExplainer 
+        symbol="∪" 
+        name="Unión" 
+        translation="Significa 'Juntar TODO' en un solo grupo." 
+        usage="A ∪ B significa que invitas a los amigos del grupo A y a los amigos del grupo B a la misma fiesta. Si alguien está en ambos grupos, igual cuenta una sola vez."
+        :cases="[
+          { valid: true, math: '{1, 2} ∪ {3, 4} = {1, 2, 3, 4}', explanation: 'Correcto. Juntamos todo.' },
+          { valid: true, math: '{1, 2} ∪ {2, 3} = {1, 2, 3}', explanation: 'Correcto. El 2 estaba repetido, así que solo se pone una vez.' }
+        ]"
+        quizQuestion="¿Qué representa visualmente la operación A ∪ B?"
+        :quizOptions="[
+          { id: 1, text: 'Solo lo que tienen en común.', correct: false },
+          { id: 2, text: 'Juntar todo sin duplicar.', correct: true },
+          { id: 3, text: 'Lo que le falta a A.', correct: false }
+        ]"
+      />
+
+      <SymbolExplainer 
+        symbol="∩" 
+        name="Intersección" 
+        translation="Significa 'Solo lo que tienen en COMÚN'." 
+        usage="A ∩ B busca únicamente a los elementos que están presentes al mismo tiempo tanto en A como en B. Es como buscar el choque o cruce."
+        :cases="[
+          { valid: true, math: '{1, 2, 3} ∩ {3, 4, 5} = {3}', explanation: 'El único número que está en ambas cajas es el 3.' },
+          { valid: false, math: '{1, 2} ∩ {3, 4} = {1, 2, 3, 4}', explanation: 'Falso. No tienen NADA en común. Ese es el resultado de una Unión, no Intersección.' }
+        ]"
+        quizQuestion="Si A = {Gatos} y B = {Perros}. ¿Cuál es la intersección A ∩ B?"
+        :quizOptions="[
+          { id: 1, text: 'Gatos y Perros juntos.', correct: false },
+          { id: 2, text: 'Un animal que es mitad gato y mitad perro.', correct: false },
+          { id: 3, text: 'Un conjunto vacío (∅), porque no hay algo que sea 100% perro y gato a la vez.', correct: true }
+        ]"
+      />
     </section>
 
     <!-- Componente de Ejercicio Dinámico -->
