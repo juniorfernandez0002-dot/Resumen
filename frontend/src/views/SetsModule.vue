@@ -73,7 +73,6 @@
           { id: 3, text: 'Ana ∈ F', correct: true }
         ]"
       />
-    </section>
 
       <SymbolExplainer 
         symbol="∪" 
