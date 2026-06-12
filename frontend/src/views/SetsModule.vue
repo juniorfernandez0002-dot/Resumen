@@ -33,6 +33,48 @@
       </div>
     </section>
 
+    <!-- TRADUCTOR DE SÍMBOLOS -->
+    <section>
+      <header class="mb-6">
+        <h2 class="text-2xl font-bold text-app-text">Traductor de Símbolos Alienígenas</h2>
+        <p class="text-sm text-app-text-muted">Aprende a leer el código antes de intentar programar.</p>
+      </header>
+
+      <SymbolExplainer 
+        symbol="{ }" 
+        name="Llaves de Conjunto" 
+        translation="Es la 'Caja' donde guardamos las cosas." 
+        usage="Todo lo que esté dentro de las llaves pertenece al conjunto. Si está fuera, no es parte del grupo."
+        :cases="[
+          { valid: true, math: 'A = {1, 2, 3}', explanation: 'El conjunto A es una caja que contiene el 1, 2 y 3.' },
+          { valid: false, math: 'A = 1, 2, 3', explanation: 'Error: Los números están tirados en el piso, no están agrupados en una caja.' }
+        ]"
+        quizQuestion="Si escribes B = Gato, Perro (sin llaves), ¿matemáticamente es un conjunto válido?"
+        :quizOptions="[
+          { id: 1, text: 'Sí, porque son animales.', correct: false },
+          { id: 2, text: 'No, porque no están encerrados en su caja { }.', correct: true }
+        ]"
+      />
+
+      <SymbolExplainer 
+        symbol="∈" 
+        name="Pertenencia" 
+        translation="Significa literalmente 'vive en' o 'pertenece a'." 
+        usage="A la izquierda pones al elemento (la persona) y a la derecha pones el Conjunto (la casa)."
+        :cases="[
+          { valid: true, math: '2 ∈ {1, 2, 3}', explanation: 'El número 2 vive dentro de esa caja.' },
+          { valid: false, math: '{1, 2, 3} ∈ 2', explanation: 'Absurdo: Una casa entera no puede vivir dentro de una persona.' },
+          { valid: true, math: '5 ∉ {1, 2, 3}', explanation: 'El símbolo tachado significa NO pertenece (el 5 no vive ahí).' }
+        ]"
+        quizQuestion="¿Cuál de estas afirmaciones es la forma correcta de decir que Ana pertenece a la familia F?"
+        :quizOptions="[
+          { id: 1, text: 'F ∈ Ana', correct: false },
+          { id: 2, text: 'Ana = F', correct: false },
+          { id: 3, text: 'Ana ∈ F', correct: true }
+        ]"
+      />
+    </section>
+
     <!-- Tipos de Conjuntos / Operaciones Visuales -->
     <section>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -61,6 +103,7 @@
 import MathFormula from '../components/MathFormula.vue'
 import StepByStepExercise from '../components/StepByStepExercise.vue'
 import TypingDrill from '../components/TypingDrill.vue'
+import SymbolExplainer from '../components/SymbolExplainer.vue'
 
 // Extraemos los pasos que antes estaban quemados en StepByStepExercise
 const setsSteps = [
