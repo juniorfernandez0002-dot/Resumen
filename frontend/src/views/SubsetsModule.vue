@@ -5,25 +5,59 @@
       <p class="text-app-text-muted">Las partes de un conjunto</p>
     </header>
 
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="bg-app-surface p-6 rounded-xl border border-app-border shadow-sm flex flex-col justify-center">
-        <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">Concepto Principal</h2>
-        <p class="text-app-text-muted text-sm mb-4">
-          Imagina que tienes una caja con tus juguetes favoritos (<strong>Conjunto</strong>).
-          Un <strong>Subconjunto</strong> es cuando separas algunos de esos juguetes para jugar hoy.
-          ¡El <strong>Conjunto Potencia</strong> es la lista de <em>todas las combinaciones posibles</em> de juguetes que podrías elegir! 🚀
-        </p>
+    <section class="mb-12">
+      <!-- Taladros de Memoria Muscular -->
+      <div class="flex flex-col gap-4 mb-8">
+        <TypingDrill 
+          title="Concepto Central: Subconjunto" 
+          targetText="Un subconjunto es cuando separas algunos elementos de un grupo más grande." 
+          :requiredReps="3" 
+        />
+        <TypingDrill 
+          title="Concepto Central: Conjunto Potencia" 
+          targetText="El conjunto potencia es la lista completa de todas las combinaciones posibles que puedes armar." 
+          :requiredReps="3" 
+        />
       </div>
-      <div class="bg-app-surface p-6 rounded-xl border border-app-border shadow-sm flex flex-col justify-center">
-        <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">Definición Formal</h2>
-        <div class="bg-app-bg p-4 rounded-lg border border-app-border">
-          <p class="text-center text-app-text-muted text-sm">Conjunto Potencia P(A) = { X : X ⊆ A }</p>
-          <div class="mt-2 text-center text-sm font-bold text-app-primary">
-            <MathFormula math="2^n" />
-          </div>
-          <p class="text-center text-xs text-app-text-muted mt-3">Fórmula rápida: El número total de combinaciones (subconjuntos) es 2 elevado a la cantidad de elementos 'n'.</p>
-        </div>
-      </div>
+
+      <!-- Simulador Visual -->
+      <PowerSetSimulator />
+
+      <!-- Traductor de Símbolos -->
+      <header class="mb-6 mt-12">
+        <h2 class="text-2xl font-bold text-app-text">Traductor de Símbolos Alienígenas</h2>
+      </header>
+
+      <SymbolExplainer 
+        symbol="⊆" 
+        name="Subconjunto (Inclusión)" 
+        translation="Significa 'Es una parte de' o 'Está metido dentro de'." 
+        usage="A ⊆ B significa que TODO lo que está en A, también está dentro de B."
+        :cases="[
+          { valid: true, math: '{Gato} ⊆ {Gato, Perro}', explanation: 'Correcto. El conjunto del Gato es una pequeña parte del conjunto de Gato y Perro.' },
+          { valid: false, math: '{Loro} ⊆ {Gato, Perro}', explanation: 'Falso. El Loro no está dentro de la caja de Gato y Perro.' }
+        ]"
+        quizQuestion="¿Cuál es la diferencia entre Pertenencia (∈) y Subconjunto (⊆)?"
+        :quizOptions="[
+          { id: 1, text: 'Son exactamente lo mismo.', correct: false },
+          { id: 2, text: '∈ es para elementos individuales (un animal), ⊆ es para comparar cajas enteras (conjuntos).', correct: true }
+        ]"
+      />
+
+      <SymbolExplainer 
+        symbol="P(A)" 
+        name="Conjunto Potencia" 
+        translation="Significa 'La Lista de todas las Combinaciones'." 
+        usage="Si A tiene 3 elementos, P(A) es el conjunto gigante que contiene adentro a los 8 subconjuntos posibles."
+        :cases="[
+          { valid: true, math: 'Si A = {1}, entonces P(A) = { ∅, {1} }', explanation: 'Con 1 solo elemento, tienes 2 combinaciones: o no lo llevas (Vacío), o te lo llevas ({1}).' }
+        ]"
+        quizQuestion="¿Qué tamaño tiene siempre el Conjunto Potencia P(A)?"
+        :quizOptions="[
+          { id: 1, text: 'El doble del conjunto original.', correct: false },
+          { id: 2, text: '2 elevado a la cantidad de elementos de A.', correct: true }
+        ]"
+      />
     </section>
 
     <StepByStepExercise :exerciseSteps="moduleSteps" nextModuleRoute="/modulo/operaciones" />
@@ -33,6 +67,9 @@
 <script setup>
 import MathFormula from '../components/MathFormula.vue'
 import StepByStepExercise from '../components/StepByStepExercise.vue'
+import TypingDrill from '../components/TypingDrill.vue'
+import SymbolExplainer from '../components/SymbolExplainer.vue'
+import PowerSetSimulator from '../components/PowerSetSimulator.vue'
 
 const moduleSteps = [
   {

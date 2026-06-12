@@ -66,6 +66,7 @@ const triggerQuiz = () => {
 
 onMounted(() => {
   // Iniciar el temporizador global
+  /*
   quizInterval = setInterval(() => {
     // Solo disparamos si hay un 30% de probabilidad (para que sea una sorpresa)
     // Pero si queremos que pase seguro para probar, lo forzamos.
@@ -73,6 +74,7 @@ onMounted(() => {
       triggerQuiz();
     }
   }, INTERVAL_MS)
+  */
   
   // Para propósitos de testing/demostración, también exponemos triggerQuiz en window
   window.triggerBrainQuiz = triggerQuiz;
