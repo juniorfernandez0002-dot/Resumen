@@ -9,17 +9,17 @@
       <div class="bg-app-surface p-6 rounded-xl border border-app-border shadow-sm flex flex-col justify-center">
         <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">Concepto Principal</h2>
         <p class="text-app-text-muted text-sm mb-4">
-          Una función booleana es como un <strong>filtro inteligente</strong>: le das varias respuestas de SÍ o NO, las combina usando reglas claras, y al final te da un único resultado: ¡Aprobado o Rechazado!
+          Una <strong>Función Booleana</strong> es como un filtro inteligente: le das varias respuestas de SÍ o NO (Tus variables A, B, C...), las combina usando las compuertas que vimos, y al final escupe una única decisión final: ¡Aprobado o Rechazado!
         </p>
       </div>
       <div class="bg-app-surface p-6 rounded-xl border border-app-border shadow-sm flex flex-col justify-center">
         <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">Definición Formal</h2>
         <div class="bg-app-bg p-4 rounded-lg border border-app-border">
-          <p class="text-center text-app-text-muted text-sm">Formas Canónicas</p>
+          <p class="text-center text-app-text-muted text-sm">Tablas de Verdad y Formas Canónicas</p>
           <div class="mt-2 text-center text-sm font-bold text-app-primary">
             Suma de Productos o Producto de Sumas
           </div>
-          <p class="text-center text-xs text-app-text-muted mt-3">Operan con "n" variables binarias y se pueden representar mediante Tablas de Verdad.</p>
+          <p class="text-center text-xs text-app-text-muted mt-3">Toda tabla de verdad se puede mapear como una función matemática (usando minitérminos). ¡Así es como le damos "inteligencia" condicional a la IA básica!</p>
         </div>
       </div>
     </section>
@@ -31,27 +31,43 @@
 <script setup>
 import MathFormula from '../components/MathFormula.vue'
 import StepByStepExercise from '../components/StepByStepExercise.vue'
+import LogicCircuitInteractive from '../components/LogicCircuitInteractive.vue'
 
 const moduleSteps = [
   {
-    title: 'Tablas de Verdad',
-    question: 'Si una función booleana tiene 3 variables (A, B, C), ¿cuántas combinaciones posibles tendrá su tabla de verdad?',
+    title: 'Desafío: ¿Cuál es la compuerta secreta?',
+    question: 'Quiero que mi función final devuelva 1 (Foco Encendido) SI Y SOLO SI "A está encendido O B está encendido". ¿Qué compuerta debe ir en el cuadro misterioso (???)? Haz clic en la compuerta misteriosa para cambiarla.',
     needsDiagram: false,
+    interactiveComponent: LogicCircuitInteractive,
+    interactiveData: {
+      mode: 'guess-gate',
+      targetGoal: true,
+      message: '🔍 Haz clic en la compuerta azul (???) para revelar la correcta',
+      initialNodes: [
+        { id: 'A', type: 'SWITCH', x: 100, y: 150, label: 'A', value: 0 },
+        { id: 'B', type: 'SWITCH', x: 100, y: 250, label: 'B', value: 1 }, // Dejo la B en 1 para que al acertar se prenda el foco
+        { id: 'gate', type: 'HIDDEN', x: 300, y: 200 },
+        { id: 'out', type: 'BULB', x: 500, y: 200, label: 'Foco (Salida)' }
+      ],
+      initialWires: [
+        { source: 'A', target: 'gate' },
+        { source: 'B', target: 'gate' },
+        { source: 'gate', target: 'out' }
+      ]
+    },
     options: [
-      { id: 1, text: '3', isMath: false, correct: false },
-      { id: 2, text: '6', isMath: false, correct: false },
-      { id: 3, text: '8', isMath: false, correct: true },
-      { id: 4, text: '9', isMath: false, correct: false }
+      { id: 1, text: '¡Era la compuerta OR!', isMath: false, correct: true },
+      { id: 2, text: '¡Era la compuerta AND!', isMath: false, correct: false }
     ]
   },
   {
-    title: 'Aplicaciones Reales',
-    question: '¿Para qué son muy útiles las funciones booleanas en la Inteligencia Artificial?',
+    title: 'Tablas de Verdad a gran escala',
+    question: 'Si en lugar de 2 interruptores (A, B) tuvieras 3 (A, B, C), ¿cuántas combinaciones de ON/OFF posibles tendrías en tu Tabla de Verdad?',
     needsDiagram: false,
     options: [
-      { id: 1, text: 'Para dibujar gráficos en 3D.', isMath: false, correct: false },
-      { id: 2, text: 'Para crear reglas condicionales y representar conocimiento.', isMath: false, correct: true },
-      { id: 3, text: 'Para generar números aleatorios infinitos.', isMath: false, correct: false }
+      { id: 1, text: '6 combinaciones', isMath: false, correct: false },
+      { id: 2, text: '8 combinaciones (2 al cubo)', isMath: false, correct: true },
+      { id: 3, text: '9 combinaciones', isMath: false, correct: false }
     ]
   }
 ]
