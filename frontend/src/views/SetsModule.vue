@@ -12,12 +12,12 @@
         <TypingDrill 
           title="Concepto Central (1/2)" 
           targetText="Un Conjunto es una agrupación de elementos únicos. No hay elementos repetidos y el orden no importa." 
-          :requiredReps="3" 
+          :requiredReps="10" 
         />
         <TypingDrill 
           title="Concepto Central (2/2)" 
           targetText="Entender conjuntos nos permite agrupar, clasificar y operar lógicamente con información estructurada." 
-          :requiredReps="3" 
+          :requiredReps="10" 
         />
       </div>
 
