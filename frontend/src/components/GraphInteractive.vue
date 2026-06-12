@@ -9,6 +9,7 @@
     <!-- Canvas SVG para el Grafo -->
     <svg 
       class="w-full h-[400px] cursor-crosshair" 
+      viewBox="0 0 600 400" preserveAspectRatio="xMidYMid meet"
       @mousemove="handleMouseMove" 
       @mouseup="handleMouseUp" 
       @mouseleave="handleMouseUp"

@@ -7,7 +7,7 @@
     </div>
 
     <!-- Pizarra de Circuitos (SVG y superposición HTML) -->
-    <svg class="w-full h-[400px]" style="filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));">
+    <svg class="w-full h-[400px]" viewBox="0 0 750 400" preserveAspectRatio="xMidYMid meet" style="filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));">
       <defs>
         <!-- Filtro Resplandor para Cables Energizados -->
         <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
