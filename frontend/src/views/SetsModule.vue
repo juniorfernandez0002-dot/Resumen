@@ -1,80 +1,104 @@
 <template>
-  <div class="pb-20">
-    <!-- Encabezado -->
-    <header class="mb-10 border-b border-app-border pb-6">
+  <div class="space-y-8 animate-fade-in pb-12">
+    <!-- Encabezado del Módulo -->
+    <header class="border-b border-app-border pb-6">
       <h1 class="text-3xl font-bold text-app-text mb-2">Teoría de Conjuntos</h1>
       <p class="text-app-text-muted">Definición, diagramas y tipos</p>
     </header>
 
-    <!-- Sección 1: Concepto Central -->
-    <section class="mb-10">
+    <!-- Sección Teórica Corta (Micro-learning) -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="bg-app-surface p-6 rounded-xl border border-app-border shadow-sm">
-        <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">
-          Concepto Central
-        </h2>
+        <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">Concepto Central</h2>
         <ul class="space-y-3 text-app-text-muted text-sm">
-          <li class="flex items-start gap-2">
-            <span class="font-bold text-app-primary block mt-0.5">•</span>
-            <span>Un <strong>Conjunto</strong> es una agrupación de elementos únicos. No hay elementos repetidos y el orden no importa.</span>
+          <li class="flex items-start">
+            <span class="text-app-primary mr-2">•</span>
+            <span>Un Conjunto es una agrupación de elementos únicos. No hay elementos repetidos y el orden no importa.</span>
           </li>
-          <li class="flex items-start gap-2">
-            <span class="font-bold text-app-primary block mt-0.5">•</span>
+          <li class="flex items-start">
+            <span class="text-app-primary mr-2">•</span>
             <span>Entender conjuntos nos permite agrupar, clasificar y operar lógicamente con información estructurada.</span>
           </li>
         </ul>
       </div>
-    </section>
 
-    <!-- Sección 2: Teoría Formal -->
-    <section class="mb-10">
       <div class="bg-app-surface p-6 rounded-xl border border-app-border shadow-sm">
-        <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">
-          Definición Formal
-        </h2>
+        <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">Definición Formal</h2>
         <p class="text-sm text-app-text-muted mb-4">
           Un conjunto se denota habitualmente con letras mayúsculas y sus elementos se encierran entre llaves.
         </p>
-        
-        <div class="bg-app-bg p-4 rounded border border-app-border mb-4">
-          <MathFormula math="A = \{ x \in \mathbb{Z} \mid 1 \le x \le 3 \}" :display="true" />
-          <p class="text-center text-app-text font-medium mt-2">
-            Por extensión: A = {1, 2, 3}
-          </p>
-        </div>
-
-        <div class="grid grid-cols-3 gap-4 mt-6">
-          <div class="p-3 border border-app-border rounded-lg bg-app-surface">
-            <MathFormula math="A \cup B" class="block mb-1 font-bold text-app-primary text-center" />
-            <p class="text-xs text-center text-app-text-muted">Unión</p>
-          </div>
-          <div class="p-3 border border-app-border rounded-lg bg-app-surface">
-            <MathFormula math="A \cap B" class="block mb-1 font-bold text-app-primary text-center" />
-            <p class="text-xs text-center text-app-text-muted">Intersección</p>
-          </div>
-          <div class="p-3 border border-app-border rounded-lg bg-app-surface">
-            <MathFormula math="x \in A" class="block mb-1 font-bold text-app-primary text-center" />
-            <p class="text-xs text-center text-app-text-muted">Pertenencia</p>
-          </div>
+        <div class="bg-app-bg p-4 rounded-lg flex flex-col gap-2 items-center justify-center border border-app-border">
+          <MathFormula math="A = \{x \in \mathbb{Z} \mid 1 \le x \le 3\}" />
+          <span class="text-xs font-bold text-app-success mt-2">Por extensión: A = {1, 2, 3}</span>
         </div>
       </div>
     </section>
 
-    <!-- Sección 3: Interactivo -->
-    <section class="mb-10">
-      <h2 class="text-lg font-semibold text-app-text mb-4">Representación Visual (Diagramas de Venn)</h2>
-      <VennDiagramInteractive />
+    <!-- Tipos de Conjuntos / Operaciones Visuales -->
+    <section>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-app-surface p-4 rounded-lg border border-app-border flex flex-col items-center justify-center text-center hover:border-app-primary transition-colors cursor-pointer">
+          <MathFormula math="A \cup B" />
+          <span class="text-xs text-app-text-muted mt-2">Unión</span>
+        </div>
+        <div class="bg-app-surface p-4 rounded-lg border border-app-border flex flex-col items-center justify-center text-center hover:border-app-primary transition-colors cursor-pointer">
+          <MathFormula math="A \cap B" />
+          <span class="text-xs text-app-text-muted mt-2">Intersección</span>
+        </div>
+        <div class="bg-app-surface p-4 rounded-lg border border-app-border flex flex-col items-center justify-center text-center hover:border-app-primary transition-colors cursor-pointer">
+          <MathFormula math="x \in A" />
+          <span class="text-xs text-app-text-muted mt-2">Pertenencia</span>
+        </div>
+      </div>
     </section>
 
-    <!-- Sección 4: Práctica -->
-    <section>
-      <StepByStepExercise />
-    </section>
+    <!-- Componente de Ejercicio Dinámico -->
+    <StepByStepExercise :exerciseSteps="setsSteps" nextModuleRoute="/modulo/cardinalidad" />
 
   </div>
 </template>
 
 <script setup>
 import MathFormula from '../components/MathFormula.vue'
-import VennDiagramInteractive from '../components/VennDiagramInteractive.vue'
 import StepByStepExercise from '../components/StepByStepExercise.vue'
+
+// Extraemos los pasos que antes estaban quemados en StepByStepExercise
+const setsSteps = [
+  {
+    title: 'Identificar Intersección',
+    question: 'Dado A = {2, 4, 6} y B = {4, 6, 8}. Identifica el conjunto resultante de A ∩ B (Intersección).',
+    needsDiagram: true,
+    diagramData: {
+      rulesTitle: 'Datos del problema:',
+      rules: [
+        'Conjunto A: {2, 4, 6}',
+        'Conjunto B: {4, 6, 8}',
+        'Coloca los números repetidos en la intersección.'
+      ],
+      elements: [
+        { id: 10, value: '2', region: 'UNASSIGNED', correctRegion: 'A' },
+        { id: 11, value: '4', region: 'UNASSIGNED', correctRegion: 'INTERSECTION' },
+        { id: 12, value: '6', region: 'UNASSIGNED', correctRegion: 'INTERSECTION' },
+        { id: 13, value: '8', region: 'UNASSIGNED', correctRegion: 'B' }
+      ]
+    },
+    options: [
+      { id: 1, text: '\\{2, 8\\}', isMath: true, correct: false },
+      { id: 2, text: '\\{4, 6\\}', isMath: true, correct: true },
+      { id: 3, text: '\\{2, 4, 6, 8\\}', isMath: true, correct: false },
+      { id: 4, text: '\\emptyset', isMath: true, correct: false }
+    ]
+  },
+  {
+    title: 'Análisis de Cardinalidad',
+    question: 'Determine la cardinalidad de la unión |A ∪ B| (La cardinalidad es simplemente "contar". ¿Cuántas "bolitas" o números ves en TOTAL sumando todo lo que está dentro de los círculos A y B?)',
+    needsDiagram: false,
+    options: [
+      { id: 1, text: '6', isMath: false, correct: false },
+      { id: 2, text: '4', isMath: false, correct: true },
+      { id: 3, text: '2', isMath: false, correct: false },
+      { id: 4, text: '8', isMath: false, correct: false }
+    ]
+  }
+]
 </script>

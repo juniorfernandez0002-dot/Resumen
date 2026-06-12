@@ -15,14 +15,10 @@
         <div>
           <h2 class="text-xs font-bold text-app-text-muted uppercase tracking-wider mb-2">Unidad 1: Conjuntos</h2>
           <ul class="space-y-1">
-            <li>
-              <router-link to="/modulo/conjuntos" class="block px-3 py-2 text-sm rounded-md bg-app-primary-light text-app-primary font-medium">
-                1.1 Definición y Diagramas
-              </router-link>
-            </li>
-            <li><span class="block px-3 py-2 text-sm text-app-text-muted opacity-50 cursor-not-allowed">1.2 Cardinalidad</span></li>
-            <li><span class="block px-3 py-2 text-sm text-app-text-muted opacity-50 cursor-not-allowed">1.3 Subconjuntos y Potencia</span></li>
-            <li><span class="block px-3 py-2 text-sm text-app-text-muted opacity-50 cursor-not-allowed">1.4 Operaciones y Leyes</span></li>
+            <li><router-link to="/modulo/conjuntos" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">1.1 Definición y Diagramas</router-link></li>
+            <li><router-link to="/modulo/cardinalidad" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">1.2 Cardinalidad</router-link></li>
+            <li><router-link to="/modulo/subconjuntos" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">1.3 Subconjuntos y Potencia</router-link></li>
+            <li><router-link to="/modulo/operaciones" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">1.4 Operaciones y Leyes</router-link></li>
           </ul>
         </div>
         
@@ -30,10 +26,10 @@
         <div>
           <h2 class="text-xs font-bold text-app-text-muted uppercase tracking-wider mb-2">Unidad 2: Relaciones</h2>
           <ul class="space-y-1">
-            <li><span class="block px-3 py-2 text-sm text-app-text-muted opacity-50 cursor-not-allowed">2.1 Definición y Representación</span></li>
-            <li><span class="block px-3 py-2 text-sm text-app-text-muted opacity-50 cursor-not-allowed">2.2 Composición y Tipos</span></li>
-            <li><span class="block px-3 py-2 text-sm text-app-text-muted opacity-50 cursor-not-allowed">2.3 Relación de Equivalencia</span></li>
-            <li><span class="block px-3 py-2 text-sm text-app-text-muted opacity-50 cursor-not-allowed">2.4 Orden Parcial</span></li>
+            <li><router-link to="/modulo/2-1" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">2.1 Definición y Representación</router-link></li>
+            <li><router-link to="/modulo/2-2" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">2.2 Composición y Tipos</router-link></li>
+            <li><router-link to="/modulo/2-3" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">2.3 Relación de Equivalencia</router-link></li>
+            <li><router-link to="/modulo/2-4" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">2.4 Orden Parcial</router-link></li>
           </ul>
         </div>
 
@@ -41,10 +37,10 @@
         <div>
           <h2 class="text-xs font-bold text-app-text-muted uppercase tracking-wider mb-2">Unidad 3: Lógica y Boole</h2>
           <ul class="space-y-1">
-            <li><span class="block px-3 py-2 text-sm text-app-text-muted opacity-50 cursor-not-allowed">3.1 Proposiciones y Conectores</span></li>
-            <li><span class="block px-3 py-2 text-sm text-app-text-muted opacity-50 cursor-not-allowed">3.2 Circuitos e Inducción</span></li>
-            <li><span class="block px-3 py-2 text-sm text-app-text-muted opacity-50 cursor-not-allowed">3.3 Álgebra de Boole</span></li>
-            <li><span class="block px-3 py-2 text-sm text-app-text-muted opacity-50 cursor-not-allowed">3.4 Funciones Booleanas</span></li>
+            <li><router-link to="/modulo/3-1" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">3.1 Proposiciones y Conectores</router-link></li>
+            <li><router-link to="/modulo/3-2" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">3.2 Circuitos e Inducción</router-link></li>
+            <li><router-link to="/modulo/3-3" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">3.3 Álgebra de Boole</router-link></li>
+            <li><router-link to="/modulo/3-4" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">3.4 Funciones Booleanas</router-link></li>
           </ul>
         </div>
 
@@ -52,10 +48,10 @@
         <div>
           <h2 class="text-xs font-bold text-app-text-muted uppercase tracking-wider mb-2">Unidad 4: Grafos</h2>
           <ul class="space-y-1">
-            <li><span class="block px-3 py-2 text-sm text-app-text-muted opacity-50 cursor-not-allowed">4.1 Definiciones Básicas</span></li>
-            <li><span class="block px-3 py-2 text-sm text-app-text-muted opacity-50 cursor-not-allowed">4.2 Simples y Multigrafos</span></li>
-            <li><span class="block px-3 py-2 text-sm text-app-text-muted opacity-50 cursor-not-allowed">4.3 Isomorfismo</span></li>
-            <li><span class="block px-3 py-2 text-sm text-app-text-muted opacity-50 cursor-not-allowed">4.4 Eulerianos y Hamiltonianos</span></li>
+            <li><router-link to="/modulo/4-1" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">4.1 Definiciones Básicas</router-link></li>
+            <li><router-link to="/modulo/4-2" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">4.2 Simples y Multigrafos</router-link></li>
+            <li><router-link to="/modulo/4-3" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">4.3 Isomorfismo</router-link></li>
+            <li><router-link to="/modulo/4-4" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">4.4 Eulerianos y Hamiltonianos</router-link></li>
           </ul>
         </div>
       </div>
@@ -68,22 +64,42 @@
         <h2 class="text-lg font-semibold text-app-text">Progreso del Curso</h2>
         <div class="flex items-center gap-4 w-1/3 max-w-xs">
           <div class="h-2 w-full bg-app-bg rounded-full overflow-hidden border border-app-border">
-            <div class="h-full bg-app-primary w-[5%] transition-all duration-500"></div>
+            <div class="h-full bg-app-primary w-[30%] transition-all duration-500"></div>
           </div>
-          <span class="text-sm font-medium text-app-text-muted">5%</span>
+          <span class="text-sm font-medium text-app-text-muted">30%</span>
         </div>
       </header>
 
       <!-- Router View -->
       <main class="flex-1 p-8 overflow-y-auto">
         <div class="max-w-4xl mx-auto">
-          <router-view></router-view>
+          <router-view :key="$route.path"></router-view>
         </div>
       </main>
     </div>
 
   </div>
 </template>
+
+<style>
+.sidebar-link {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  color: var(--color-app-text-muted);
+  transition: all 0.2s;
+}
+.sidebar-link:hover {
+  background-color: var(--color-app-bg);
+  color: var(--color-app-text);
+}
+.sidebar-link-active {
+  background-color: var(--color-app-primary-light) !important;
+  color: var(--color-app-primary) !important;
+}
+</style>
 
 <script setup>
 </script>
