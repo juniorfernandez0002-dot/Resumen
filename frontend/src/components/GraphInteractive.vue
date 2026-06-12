@@ -1,8 +1,8 @@
 <template>
-  <div class="relative w-full bg-app-bg border border-app-border rounded-xl overflow-hidden shadow-inner flex flex-col items-center justify-center min-h-[350px]">
+  <div class="w-full bg-app-bg border border-app-border rounded-xl overflow-hidden shadow-inner flex flex-col items-center justify-center min-h-[350px] py-4">
     
     <!-- Barra Superior de Instrucciones del Juego -->
-    <div v-if="gameMessage" class="absolute top-4 left-1/2 -translate-x-1/2 bg-app-surface px-6 py-2 rounded-full shadow-md z-10 font-medium text-sm text-center border border-app-primary text-app-primary">
+    <div v-if="gameMessage" class="mb-2 bg-app-surface px-6 py-2 rounded-full shadow-md font-medium text-sm text-center border border-app-primary text-app-primary max-w-[90%]">
       {{ gameMessage }}
     </div>
 

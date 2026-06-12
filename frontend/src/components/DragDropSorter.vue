@@ -1,11 +1,11 @@
 <template>
-  <div class="relative w-full bg-[#0f172a] border border-app-border rounded-xl overflow-hidden shadow-inner flex flex-col p-6 min-h-[400px] select-none">
+  <div class="w-full bg-[#0f172a] border border-app-border rounded-xl overflow-hidden shadow-inner flex flex-col py-6 px-4 min-h-[400px] select-none items-center">
     
-    <div v-if="gameMessage" class="absolute top-4 left-1/2 -translate-x-1/2 bg-app-surface px-6 py-2 rounded-full shadow-lg z-10 font-bold text-sm text-center border border-app-primary text-app-primary">
+    <div v-if="gameMessage" class="mb-6 bg-app-surface px-6 py-2 rounded-full shadow-lg font-bold text-sm text-center border border-app-primary text-app-primary max-w-[90%]">
       {{ gameMessage }}
     </div>
 
-    <div class="mt-12 flex-1 flex flex-col gap-8">
+    <div class="w-full flex-1 flex flex-col gap-8">
       
       <!-- ZONA DE ORIGEN (POOL) -->
       <div class="bg-[#1e293b] p-4 rounded-xl border-2 border-dashed border-[#334155] min-h-[100px] flex flex-wrap gap-4 items-center justify-center transition-colors"
