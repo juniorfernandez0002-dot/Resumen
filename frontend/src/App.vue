@@ -74,9 +74,8 @@
         </div>
       </header>
 
-      <!-- Router View -->
       <main class="flex-1 p-8 overflow-y-auto">
-        <div class="max-w-4xl mx-auto">
+        <div class="max-w-5xl mx-auto">
           <router-view :key="$route.path"></router-view>
         </div>
       </main>

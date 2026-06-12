@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full max-w-3xl mx-auto min-h-[400px] flex flex-col font-sans select-none">
+  <div class="w-full max-w-5xl mx-auto min-h-[400px] flex flex-col font-sans select-none">
     
     <!-- PANTALLA DE EXAMEN -->
     <div v-if="!isFinished" class="flex-1 flex flex-col">

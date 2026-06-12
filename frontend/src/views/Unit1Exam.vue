@@ -33,7 +33,7 @@ const examQuestions = [
   },
   {
     id: 3,
-    question: "En las operaciones de conjuntos, ¿qué hace la INTERSECCIÓN (A ∩ B)?",
+    question: "En las operaciones de conjuntos, ¿qué hace la INTERSECCIÓN (A\u00A0∩\u00A0B)?",
     options: [
       { id: 1, text: "Busca a los elementos que tienen en COMÚN ambos conjuntos.", correct: true },
       { id: 2, text: "Junta a todos en una sola bolsa.", correct: false },
