@@ -9,17 +9,17 @@
       <div class="bg-app-surface p-6 rounded-xl border border-app-border shadow-sm flex flex-col justify-center">
         <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">Concepto Principal</h2>
         <p class="text-app-text-muted text-sm mb-4">
-          Este módulo introduce los conceptos clave de <strong>Grafos Básicos</strong>. 
-          Aquí exploraremos sus propiedades fundamentales y cómo se aplican en la matemática discreta.
+          Un grafo es como un <strong>mapa</strong>. Los vértices (puntos) son lugares y las aristas (líneas) son los caminos o conexiones entre ellos. ¡Se usan para modelar redes sociales o rutas de viaje!
         </p>
       </div>
-      <div class="bg-app-surface p-6 rounded-xl border border-app-border shadow-sm">
+      <div class="bg-app-surface p-6 rounded-xl border border-app-border shadow-sm flex flex-col justify-center">
         <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">Definición Formal</h2>
         <div class="bg-app-bg p-4 rounded-lg border border-app-border">
-          <p class="text-center text-app-text-muted text-sm">Fórmula base para Grafos Básicos</p>
+          <p class="text-center text-app-text-muted text-sm">Un grafo G consiste en vértices V y aristas E</p>
           <div class="mt-2 text-center text-sm font-bold text-app-primary">
-            <MathFormula math="X \rightarrow Y" />
+            <MathFormula math="G = (V,E)" />
           </div>
+          <p class="text-center text-xs text-app-text-muted mt-3">La suma de los grados de todos los vértices es igual al doble del número de aristas.</p>
         </div>
       </div>
     </section>
@@ -34,12 +34,23 @@ import StepByStepExercise from '../components/StepByStepExercise.vue'
 
 const moduleSteps = [
   {
-    title: 'Pregunta Teórica',
-    question: 'Selecciona la opción que mejor describe este concepto matemático.',
+    title: 'Definición de Vértice',
+    question: '¿Qué es un vértice en un grafo?',
     needsDiagram: false,
     options: [
-      { id: 1, text: 'Opción Correcta', isMath: false, correct: true },
-      { id: 2, text: 'Opción Falsa', isMath: false, correct: false }
+      { id: 1, text: 'Una conexión entre dos lugares.', isMath: false, correct: false },
+      { id: 2, text: 'Un nodo o punto que representa un objeto.', isMath: false, correct: true },
+      { id: 3, text: 'El peso de una arista.', isMath: false, correct: false }
+    ]
+  },
+  {
+    title: 'Suma de Grados',
+    question: 'En un grafo, si sumamos los grados de todos los vértices, ¿qué obtenemos?',
+    needsDiagram: false,
+    options: [
+      { id: 1, text: 'El doble del número de aristas.', isMath: false, correct: true },
+      { id: 2, text: 'El número total de vértices.', isMath: false, correct: false },
+      { id: 3, text: 'El número de lazos.', isMath: false, correct: false }
     ]
   }
 ]
