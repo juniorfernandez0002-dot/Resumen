@@ -19,6 +19,7 @@
             <li><router-link to="/modulo/cardinalidad" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">1.2 Cardinalidad</router-link></li>
             <li><router-link to="/modulo/subconjuntos" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">1.3 Subconjuntos y Potencia</router-link></li>
             <li><router-link to="/modulo/operaciones" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">1.4 Operaciones y Leyes</router-link></li>
+            <li class="mt-2"><router-link to="/examen/1" class="sidebar-link text-yellow-500 font-bold bg-yellow-500/10 border border-yellow-500/30" active-class="sidebar-link-active">🏆 Examen U1</router-link></li>
           </ul>
         </div>
         
@@ -30,6 +31,7 @@
             <li><router-link to="/modulo/2-2" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">2.2 Composición y Tipos</router-link></li>
             <li><router-link to="/modulo/2-3" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">2.3 Relación de Equivalencia</router-link></li>
             <li><router-link to="/modulo/2-4" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">2.4 Orden Parcial</router-link></li>
+            <li class="mt-2"><router-link to="/examen/2" class="sidebar-link text-yellow-500 font-bold bg-yellow-500/10 border border-yellow-500/30" active-class="sidebar-link-active">🏆 Examen U2</router-link></li>
           </ul>
         </div>
 
@@ -41,6 +43,7 @@
             <li><router-link to="/modulo/3-2" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">3.2 Circuitos e Inducción</router-link></li>
             <li><router-link to="/modulo/3-3" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">3.3 Álgebra de Boole</router-link></li>
             <li><router-link to="/modulo/3-4" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">3.4 Funciones Booleanas</router-link></li>
+            <li class="mt-2"><router-link to="/examen/3" class="sidebar-link text-yellow-500 font-bold bg-yellow-500/10 border border-yellow-500/30" active-class="sidebar-link-active">🏆 Examen U3</router-link></li>
           </ul>
         </div>
 
@@ -52,6 +55,7 @@
             <li><router-link to="/modulo/4-2" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">4.2 Simples y Multigrafos</router-link></li>
             <li><router-link to="/modulo/4-3" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">4.3 Isomorfismo</router-link></li>
             <li><router-link to="/modulo/4-4" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">4.4 Eulerianos y Hamiltonianos</router-link></li>
+            <li class="mt-2"><router-link to="/examen/4" class="sidebar-link text-yellow-500 font-bold bg-yellow-500/10 border border-yellow-500/30" active-class="sidebar-link-active">🏆 Examen U4</router-link></li>
           </ul>
         </div>
       </div>
