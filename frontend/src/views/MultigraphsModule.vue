@@ -9,8 +9,8 @@
       <div class="bg-app-surface p-6 rounded-xl border border-app-border shadow-sm flex flex-col justify-center">
         <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">Concepto Principal</h2>
         <p class="text-app-text-muted text-sm mb-4">
-          Un grafo simple es un dibujo ordenado: líneas rectas y únicas entre puntos. 
-          Un <strong>multígrafo</strong> es más desordenado: ¡permite múltiples caminos entre los mismos dos puntos o incluso caminos que regresan al mismo lugar (lazos)!
+          Un grafo simple es ordenado: líneas únicas entre puntos. 
+          Un <strong>multígrafo</strong> es el desorden divertido: ¡permite múltiples caminos entre los mismos dos puntos o caminos que regresan al mismo lugar (lazos)!
         </p>
       </div>
       <div class="bg-app-surface p-6 rounded-xl border border-app-border shadow-sm flex flex-col justify-center">
@@ -18,9 +18,9 @@
         <div class="bg-app-bg p-4 rounded-lg border border-app-border">
           <p class="text-center text-app-text-muted text-sm">Diferencia Clave</p>
           <div class="mt-2 text-center text-sm font-bold text-app-primary">
-            Grafo Simple vs Multígrafo
+            Multígrafo vs Grafo Simple
           </div>
-          <p class="text-center text-xs text-app-text-muted mt-3">Un grafo simple no tiene lazos ni aristas paralelas. Un multígrafo sí permite múltiples aristas conectando el mismo par de vértices.</p>
+          <p class="text-center text-xs text-app-text-muted mt-3">Un multígrafo permite aristas múltiples conectando el mismo par de vértices y pseudografos permiten lazos (bucles).</p>
         </div>
       </div>
     </section>
@@ -32,26 +32,43 @@
 <script setup>
 import MathFormula from '../components/MathFormula.vue'
 import StepByStepExercise from '../components/StepByStepExercise.vue'
+import GraphInteractive from '../components/GraphInteractive.vue'
 
 const moduleSteps = [
   {
-    title: 'Grafos Simples',
-    question: '¿Cuál es la principal característica de un grafo simple?',
+    title: 'Visualización de Multígrafo',
+    question: 'Observa el multígrafo. Juega arrastrando los nodos para ver las curvas. ¿Cuántos caminos DIRECTOS (aristas) existen solo entre los nodos A y B?',
     needsDiagram: false,
+    interactiveComponent: GraphInteractive,
+    interactiveData: {
+      mode: 'view',
+      message: 'Multígrafo con lazos y aristas paralelas (¡Arrastra los nodos!)',
+      initialNodes: [
+        { id: 'A', x: 150, y: 150, label: 'A' },
+        { id: 'B', x: 400, y: 150, label: 'B' },
+        { id: 'C', x: 275, y: 300, label: 'C' }
+      ],
+      initialEdges: [
+        { id: 'e1', source: 'A', target: 'B', offset: 0.2 },
+        { id: 'e2', source: 'A', target: 'B', offset: -0.2 },
+        { id: 'e3', source: 'B', target: 'C' },
+        { id: 'loop1', source: 'C', target: 'C', isLoop: true }
+      ]
+    },
     options: [
-      { id: 1, text: 'Permite tener lazos (bucles).', isMath: false, correct: false },
-      { id: 2, text: 'No tiene lazos ni múltiples aristas.', isMath: false, correct: true },
-      { id: 3, text: 'Todas sus aristas tienen dirección.', isMath: false, correct: false }
+      { id: 1, text: 'Solo 1', isMath: false, correct: false },
+      { id: 2, text: '2 (Son aristas paralelas)', isMath: false, correct: true },
+      { id: 3, text: 'Ninguno', isMath: false, correct: false }
     ]
   },
   {
-    title: 'Modelado con Multigrafos',
-    question: '¿Qué tipo de grafo usarías para representar múltiples vuelos directos entre dos mismas ciudades?',
+    title: 'El Lazo',
+    question: 'En el gráfico anterior, fíjate en el nodo C. Tiene un camino que sale y entra de sí mismo. ¿Cómo se llama eso?',
     needsDiagram: false,
     options: [
-      { id: 1, text: 'Grafo simple.', isMath: false, correct: false },
-      { id: 2, text: 'Multígrafo.', isMath: false, correct: true },
-      { id: 3, text: 'Grafo bipartito.', isMath: false, correct: false }
+      { id: 1, text: 'Lazo o Bucle', isMath: false, correct: true },
+      { id: 2, text: 'Arista Paralela', isMath: false, correct: false },
+      { id: 3, text: 'Vértice Aislado', isMath: false, correct: false }
     ]
   }
 ]
