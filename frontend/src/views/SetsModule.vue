@@ -8,18 +8,17 @@
 
     <!-- Sección Teórica Corta (Micro-learning) -->
     <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="bg-app-surface p-6 rounded-xl border border-app-border shadow-sm">
-        <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">Concepto Central</h2>
-        <ul class="space-y-3 text-app-text-muted text-sm">
-          <li class="flex items-start">
-            <span class="text-app-primary mr-2">•</span>
-            <span>Un Conjunto es una agrupación de elementos únicos. No hay elementos repetidos y el orden no importa.</span>
-          </li>
-          <li class="flex items-start">
-            <span class="text-app-primary mr-2">•</span>
-            <span>Entender conjuntos nos permite agrupar, clasificar y operar lógicamente con información estructurada.</span>
-          </li>
-        </ul>
+      <div class="flex flex-col gap-4">
+        <TypingDrill 
+          title="Concepto Central (1/2)" 
+          targetText="Un Conjunto es una agrupcion de elementos unicos. No hay elementos repetidos y el orden no importa." 
+          :requiredReps="3" 
+        />
+        <TypingDrill 
+          title="Concepto Central (2/2)" 
+          targetText="Entender conjuntos nos permite agrupar, clasificar y operar logicamente con informacion estructurada." 
+          :requiredReps="3" 
+        />
       </div>
 
       <div class="bg-app-surface p-6 rounded-xl border border-app-border shadow-sm">
@@ -61,6 +60,7 @@
 <script setup>
 import MathFormula from '../components/MathFormula.vue'
 import StepByStepExercise from '../components/StepByStepExercise.vue'
+import TypingDrill from '../components/TypingDrill.vue'
 
 // Extraemos los pasos que antes estaban quemados en StepByStepExercise
 const setsSteps = [

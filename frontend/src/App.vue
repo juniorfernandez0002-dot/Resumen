@@ -81,6 +81,9 @@
       </main>
     </div>
 
+    <!-- Secuestrador Cognitivo (Global) -->
+    <PopQuizModal />
+
   </div>
 </template>
 
@@ -105,4 +108,5 @@
 </style>
 
 <script setup>
+import PopQuizModal from './components/PopQuizModal.vue'
 </script>
