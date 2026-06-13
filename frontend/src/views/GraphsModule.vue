@@ -5,23 +5,73 @@
       <p class="text-app-text-muted">Nodos y aristas en acción</p>
     </header>
 
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="bg-app-surface p-6 rounded-xl border border-app-border shadow-sm flex flex-col justify-center">
-        <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">Concepto Principal</h2>
-        <p class="text-app-text-muted text-sm mb-4">
-          Un grafo es como un <strong>mapa</strong>. Los vértices (puntos) son lugares y las aristas (líneas) son los caminos o conexiones entre ellos. ¡Se usan para modelar redes sociales o rutas de viaje!
-        </p>
+    <section class="mb-12">
+      <div class="flex flex-col gap-4 mb-8">
+        <TypingDrill 
+          title="Concepto: Vértice (Nodo)" 
+          targetText="Un vértice es simplemente un punto. Representa una entidad, como una ciudad, una persona o un router." 
+          :requiredReps="3" 
+        />
+        <TypingDrill 
+          title="Concepto: Arista (Línea)" 
+          targetText="Una arista es la línea que conecta dos vértices. Representa una relación, como una carretera o un cable." 
+          :requiredReps="3" 
+        />
       </div>
-      <div class="bg-app-surface p-6 rounded-xl border border-app-border shadow-sm flex flex-col justify-center">
-        <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">Definición Formal</h2>
-        <div class="bg-app-bg p-4 rounded-lg border border-app-border">
-          <p class="text-center text-app-text-muted text-sm">Grafo Simple</p>
-          <div class="mt-2 text-center text-sm font-bold text-app-primary">
-            <MathFormula math="G = (V,E)" />
-          </div>
-          <p class="text-center text-xs text-app-text-muted mt-3">La suma de los grados (conexiones) de todos los vértices siempre es el doble del número de aristas (porque cada arista toca 2 vértices).</p>
-        </div>
-      </div>
+
+      <GraphVisualizer 
+        title="Anatomía de un Grafo Simple" 
+        subtitle="Visualizando un grafo G = (V, E) con 4 Vértices y 4 Aristas."
+        :width="500"
+        :height="300"
+        :nodes="[
+          { id: 'A', x: 100, y: 150, label: 'A' },
+          { id: 'B', x: 250, y: 50, label: 'B' },
+          { id: 'C', x: 400, y: 150, label: 'C' },
+          { id: 'D', x: 250, y: 250, label: 'D' }
+        ]"
+        :edges="[
+          { source: 'A', target: 'B', directed: false },
+          { source: 'B', target: 'C', directed: false },
+          { source: 'C', target: 'D', directed: false },
+          { source: 'A', target: 'D', directed: false }
+        ]"
+      />
+
+      <header class="mb-6 mt-12">
+        <h2 class="text-2xl font-bold text-app-text">Traductor de Símbolos</h2>
+      </header>
+
+      <SymbolExplainer 
+        symbol="V(G)" 
+        name="Conjunto de Vértices" 
+        translation="Es la 'Caja' que contiene todos los Puntos." 
+        usage="Simplemente abres llaves y haces una lista de los nombres de todos los puntos del dibujo."
+        :cases="[
+          { valid: true, math: 'V(G) = {A, B, C, D}', explanation: 'Correcto. Nuestro grafo de arriba tiene 4 puntos.' }
+        ]"
+        quizQuestion="Si un mapa tiene 10 ciudades, ¿cuántos elementos tiene V(G)?"
+        :quizOptions="[
+          { id: 1, text: 'No se puede saber sin las carreteras.', correct: false },
+          { id: 2, text: '10 elementos.', correct: true }
+        ]"
+      />
+
+      <SymbolExplainer 
+        symbol="E(G)" 
+        name="Conjunto de Aristas" 
+        translation="Es la lista de 'Puentes' o conexiones." 
+        usage="Cada arista se escribe como un par de puntos, por ejemplo (A,B), indicando que hay una línea que los une."
+        :cases="[
+          { valid: true, math: 'E(G) = {(A,B), (B,C), (C,D), (A,D)}', explanation: 'Correcto. Estas son las 4 líneas de nuestro grafo.' },
+          { valid: false, math: 'E(G) = {(A,C)}', explanation: 'Falso. En el dibujo de arriba, no hay una línea directa que cruce de A hasta C.' }
+        ]"
+        quizQuestion="¿Qué significa matemáticamente que (X, Y) ∈ E(G)?"
+        :quizOptions="[
+          { id: 1, text: 'Que X es más grande que Y.', correct: false },
+          { id: 2, text: 'Que existe una línea conectando el punto X con el punto Y.', correct: true }
+        ]"
+      />
     </section>
 
     <!-- Pasa el componente GraphInteractive importado -->
@@ -32,6 +82,9 @@
 <script setup>
 import MathFormula from '../components/MathFormula.vue'
 import StepByStepExercise from '../components/StepByStepExercise.vue'
+import TypingDrill from '../components/TypingDrill.vue'
+import SymbolExplainer from '../components/SymbolExplainer.vue'
+import GraphVisualizer from '../components/GraphVisualizer.vue'
 import GraphInteractive from '../components/GraphInteractive.vue'
 
 const moduleSteps = [
