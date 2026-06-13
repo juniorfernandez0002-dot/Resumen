@@ -19,10 +19,29 @@ import MultigraphsModule from '../views/MultigraphsModule.vue'
 import IsomorphismModule from '../views/IsomorphismModule.vue'
 import EulerianModule from '../views/EulerianModule.vue'
 
+// Nuevas Unidades (Geometría Analítica)
+import VectorsModule from '../views/VectorsModule.vue'
+import DotProductModule from '../views/DotProductModule.vue'
+import CrossProductModule from '../views/CrossProductModule.vue'
+import VectorGeometryModule from '../views/VectorGeometryModule.vue'
+
+import LinesModule from '../views/LinesModule.vue'
+import ParabolaModule from '../views/ParabolaModule.vue'
+import EllipseModule from '../views/EllipseModule.vue'
+import FunctionalModelsModule from '../views/FunctionalModelsModule.vue'
+
+import Lines3DModule from '../views/Lines3DModule.vue'
+import Planes3DModule from '../views/Planes3DModule.vue'
+import RelativePositionsModule from '../views/RelativePositionsModule.vue'
+import SurfacesModule from '../views/SurfacesModule.vue'
+
 import Unit1Exam from '../views/Unit1Exam.vue'
 import Unit2Exam from '../views/Unit2Exam.vue'
 import Unit3Exam from '../views/Unit3Exam.vue'
 import Unit4Exam from '../views/Unit4Exam.vue'
+import Unit5Exam from '../views/Unit5Exam.vue'
+import Unit6Exam from '../views/Unit6Exam.vue'
+import Unit7Exam from '../views/Unit7Exam.vue'
 
 const routes = [
   { path: '/', redirect: '/modulo/conjuntos' },
@@ -53,7 +72,28 @@ const routes = [
   { path: '/modulo/4-2', component: MultigraphsModule },
   { path: '/modulo/4-3', component: IsomorphismModule },
   { path: '/modulo/4-4', component: EulerianModule },
-  { path: '/examen/4', component: Unit4Exam }
+  { path: '/examen/4', component: Unit4Exam },
+
+  // Unidad 5
+  { path: '/modulo/5-1', component: VectorsModule },
+  { path: '/modulo/5-2', component: DotProductModule },
+  { path: '/modulo/5-3', component: CrossProductModule },
+  { path: '/modulo/5-4', component: VectorGeometryModule },
+  { path: '/examen/5', component: Unit5Exam },
+
+  // Unidad 6
+  { path: '/modulo/6-1', component: LinesModule },
+  { path: '/modulo/6-2', component: ParabolaModule },
+  { path: '/modulo/6-3', component: EllipseModule },
+  { path: '/modulo/6-4', component: FunctionalModelsModule },
+  { path: '/examen/6', component: Unit6Exam },
+
+  // Unidad 7
+  { path: '/modulo/7-1', component: Lines3DModule },
+  { path: '/modulo/7-2', component: Planes3DModule },
+  { path: '/modulo/7-3', component: RelativePositionsModule },
+  { path: '/modulo/7-4', component: SurfacesModule },
+  { path: '/examen/7', component: Unit7Exam }
 ]
 
 const router = createRouter({

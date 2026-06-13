@@ -58,6 +58,42 @@
             <li class="mt-2"><router-link to="/examen/4" class="sidebar-link text-yellow-500 font-bold bg-yellow-500/10 border border-yellow-500/30" active-class="sidebar-link-active">🏆 Examen U4</router-link></li>
           </ul>
         </div>
+
+        <!-- Unidad 5 -->
+        <div>
+          <h2 class="text-xs font-bold text-app-text-muted uppercase tracking-wider mb-2">Unidad 5: Vectores (2D y 3D)</h2>
+          <ul class="space-y-1">
+            <li><router-link to="/modulo/5-1" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">5.1 Espacios y Relaciones</router-link></li>
+            <li><router-link to="/modulo/5-2" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">5.2 Producto Escalar y Vectorial</router-link></li>
+            <li><router-link to="/modulo/5-3" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">5.3 Proyección Ortogonal</router-link></li>
+            <li><router-link to="/modulo/5-4" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">5.4 Geometría Dinámica</router-link></li>
+            <li class="mt-2"><router-link to="/examen/5" class="sidebar-link text-yellow-500 font-bold bg-yellow-500/10 border border-yellow-500/30" active-class="sidebar-link-active">🏆 Examen U5</router-link></li>
+          </ul>
+        </div>
+
+        <!-- Unidad 6 -->
+        <div>
+          <h2 class="text-xs font-bold text-app-text-muted uppercase tracking-wider mb-2">Unidad 6: Cónicas</h2>
+          <ul class="space-y-1">
+            <li><router-link to="/modulo/6-1" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">6.1 La Recta</router-link></li>
+            <li><router-link to="/modulo/6-2" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">6.2 La Parábola</router-link></li>
+            <li><router-link to="/modulo/6-3" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">6.3 Circunferencia y Elipse</router-link></li>
+            <li><router-link to="/modulo/6-4" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">6.4 Modelos Funcionales</router-link></li>
+            <li class="mt-2"><router-link to="/examen/6" class="sidebar-link text-yellow-500 font-bold bg-yellow-500/10 border border-yellow-500/30" active-class="sidebar-link-active">🏆 Examen U6</router-link></li>
+          </ul>
+        </div>
+
+        <!-- Unidad 7 -->
+        <div>
+          <h2 class="text-xs font-bold text-app-text-muted uppercase tracking-wider mb-2">Unidad 7: Geometría en 3D</h2>
+          <ul class="space-y-1">
+            <li><router-link to="/modulo/7-1" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">7.1 Rectas en 3D</router-link></li>
+            <li><router-link to="/modulo/7-2" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">7.2 Planos en 3D</router-link></li>
+            <li><router-link to="/modulo/7-3" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">7.3 Posiciones Relativas</router-link></li>
+            <li><router-link to="/modulo/7-4" class="sidebar-link" active-class="sidebar-link-active" exact-active-class="sidebar-link-active">7.4 Superficies</router-link></li>
+            <li class="mt-2"><router-link to="/examen/7" class="sidebar-link text-yellow-500 font-bold bg-yellow-500/10 border border-yellow-500/30" active-class="sidebar-link-active">🏆 Examen U7</router-link></li>
+          </ul>
+        </div>
       </div>
     </aside>
 
