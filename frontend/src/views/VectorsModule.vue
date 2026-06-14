@@ -14,47 +14,48 @@
       <div class="bg-app-surface p-6 rounded-xl border border-app-border shadow-sm flex flex-col justify-center">
         <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">Representación Analítica</h2>
         <div class="bg-app-bg p-4 rounded-lg border border-app-border">
-          <p class="text-center text-app-text-muted text-sm">Vector en R³</p>
+          <p class="text-center text-app-text-muted text-sm">Vector en R²</p>
           <div class="mt-2 text-center text-sm font-bold text-app-primary">
-            <MathFormula math="\vec{v} = (v_x, v_y, v_z)" />
+            <MathFormula math="\vec{v} = (v_x, v_y)" />
           </div>
         </div>
       </div>
     </section>
 
-    <section class="mb-12">
-      <div class="flex flex-col gap-4 mb-8">
-        <TypingDrill 
-          title="Regla de Oro: Magnitud" 
-          targetText="La magnitud de un vector es el tamaño o largo de la flecha, y siempre es un número positivo." 
-          :requiredReps="2" 
-        />
-      </div>
-
-      <header class="mb-6 mt-12">
-        <h2 class="text-2xl font-bold text-app-text">Traductor de Símbolos: Vectores</h2>
-      </header>
-
-      <SymbolExplainer 
-        symbol="||\vec{v}||" 
-        name="Magnitud (Norma) del Vector" 
-        translation="Significa: ¿Cuánto mide la flecha si saco una cinta métrica?" 
-        usage="Se calcula usando el Teorema de Pitágoras con las coordenadas del vector."
-        :cases="[
-          { valid: true, math: '||(3,4)|| = \\sqrt{3^2 + 4^2} = 5', explanation: 'Correcto. La hipotenusa de un triángulo de lados 3 y 4 mide 5.' }
-        ]"
-        quizQuestion="¿Qué pasa si la magnitud de un vector es exactamente 1?"
-        :quizOptions="[
-          { id: 1, text: 'Es un vector inútil.', correct: false },
-          { id: 2, text: 'Se le llama Vector Unitario.', correct: true }
-        ]"
-      />
-    </section>
+    <StepByStepExercise :exerciseSteps="moduleSteps" nextModuleRoute="/modulo/5-2" />
   </div>
 </template>
 
 <script setup>
 import MathFormula from '../components/MathFormula.vue'
-import TypingDrill from '../components/TypingDrill.vue'
-import SymbolExplainer from '../components/SymbolExplainer.vue'
+import StepByStepExercise from '../components/StepByStepExercise.vue'
+import VectorInteractive from '../components/VectorInteractive.vue'
+
+const moduleSteps = [
+  {
+    title: 'Desafío Interactivo: La Isla de Rescate',
+    question: 'Eres un helicóptero (Vector u, Azul). El viento (Vector v, Verde) te está empujando. Mueve tu vector azul hasta que la Suma Resultante (Rojo) aterrice exactamente en la Isla ubicada en (8.0, 5.0).',
+    needsDiagram: false,
+    interactiveComponent: VectorInteractive,
+    interactiveData: {
+      mode: 'sum',
+      message: 'Arrastra las puntas de las flechas azul y verde.',
+      initialU: { x: 2, y: 3 },
+      initialV: { x: 5, y: -1 } // The user needs to drag U to (3, 6)
+    },
+    options: [
+      { id: 1, text: '¡Aterrizaje Perfecto! Entiendo que la suma es encadenar las flechas.', isMath: false, correct: true },
+      { id: 2, text: 'No llego a la isla.', isMath: false, correct: false }
+    ]
+  },
+  {
+    title: 'Concepto de Magnitud',
+    question: 'Si jalas el vector verde hasta la posición (3, 4), mira el panel superior de Magnitud. ¿Por qué marca exactamente 5.00?',
+    needsDiagram: false,
+    options: [
+      { id: 1, text: 'Porque el viento es de 5 nudos.', isMath: false, correct: false },
+      { id: 2, text: 'Porque es la hipotenusa de un triángulo de base 3 y altura 4 (Teorema de Pitágoras).', isMath: false, correct: true }
+    ]
+  }
+]
 </script>

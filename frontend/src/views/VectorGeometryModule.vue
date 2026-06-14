@@ -6,36 +6,56 @@
     </header>
     <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
       <div class="bg-app-surface p-6 rounded-xl border border-app-border shadow-sm flex flex-col justify-center">
-        <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">¿Para qué sirve esto en la vida real?</h2>
+        <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">El Concepto Físico</h2>
         <p class="text-app-text-muted text-sm mb-4">
-          La <strong>Geometría Dinámica</strong> usando software (como GeoGebra o Python) permite ver cómo cambian las proyecciones y los ángulos cuando arrastras un vector en tiempo real. 
-          Es la base de cómo funcionan los motores de videojuegos 3D y las físicas de colisiones.
+          La <strong>Ecuación Paramétrica</strong> de una recta no describe la recta como un objeto estático. Describe un auto viajando por ella. Tienes un punto de inicio ($P_0$) y una velocidad constante (Vector $v$). El parámetro 't' es el tiempo.
         </p>
       </div>
       <div class="bg-app-surface p-6 rounded-xl border border-app-border shadow-sm flex flex-col justify-center">
-        <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">Ecuación Paramétrica Básica</h2>
+        <h2 class="text-lg font-semibold text-app-text mb-4 border-b border-app-border pb-2">Ecuación de Movimiento</h2>
         <div class="bg-app-bg p-4 rounded-lg border border-app-border">
           <div class="mt-2 text-center text-sm font-bold text-app-primary">
-            <MathFormula math="\vec{r}(t) = \vec{r}_0 + t\vec{v}" />
+            <MathFormula math="\vec{r}(t) = P_0 + t\vec{v}" />
           </div>
-          <p class="text-center text-xs text-app-text-muted mt-3">Describe el movimiento de un punto a lo largo de una línea usando un vector de dirección y el tiempo 't'.</p>
+          <p class="text-center text-xs text-app-text-muted mt-3">Donde r(t) es la posición en el tiempo t.</p>
         </div>
       </div>
     </section>
 
-    <section class="mb-12">
-      <div class="flex flex-col gap-4 mb-8">
-        <TypingDrill 
-          title="Regla de Oro: Vectores en Movimiento" 
-          targetText="En un motor de física, la posición final es igual a la posición inicial más la velocidad multiplicada por el tiempo." 
-          :requiredReps="2" 
-        />
-      </div>
-    </section>
+    <StepByStepExercise :exerciseSteps="moduleSteps" nextModuleRoute="/modulo/6-1" />
   </div>
 </template>
 
 <script setup>
 import MathFormula from '../components/MathFormula.vue'
-import TypingDrill from '../components/TypingDrill.vue'
+import StepByStepExercise from '../components/StepByStepExercise.vue'
+import VectorInteractive from '../components/VectorInteractive.vue'
+
+const moduleSteps = [
+  {
+    title: 'Desafío Interactivo: Viajero del Tiempo',
+    question: 'Estás en el punto azul (P_0) y quieres moverte por la recta. El control deslizable de abajo es el Tiempo "t". Muévelo a t=2.0. ¿A dónde llega la partícula roja?',
+    needsDiagram: false,
+    interactiveComponent: VectorInteractive,
+    interactiveData: {
+      mode: 'parametric',
+      message: 'Usa la barra inferior para viajar en el tiempo (t). Arrastra el vector azul para cambiar tu punto de inicio.',
+      initialU: { x: 1, y: 1 },
+      initialV: { x: 2, y: 2 }
+    },
+    options: [
+      { id: 1, text: 'Avanzó exactamente DOS VECES la distancia del vector dirección verde.', isMath: false, correct: true },
+      { id: 2, text: 'No se movió.', isMath: false, correct: false }
+    ]
+  },
+  {
+    title: 'Retrocediendo en el Tiempo',
+    question: 'Si pones el tiempo t en números negativos (ej. t=-2.0)... ¿qué pasa físicamente?',
+    needsDiagram: false,
+    options: [
+      { id: 1, text: 'La partícula explota.', isMath: false, correct: false },
+      { id: 2, text: 'La partícula se mueve en reversa sobre la misma pista infinita.', isMath: false, correct: true }
+    ]
+  }
+]
 </script>

@@ -22,39 +22,40 @@
       </div>
     </section>
 
-    <section class="mb-12">
-      <div class="flex flex-col gap-4 mb-8">
-        <TypingDrill 
-          title="Regla de Oro: Vectores Perpendiculares" 
-          targetText="Si el producto escalar de dos vectores da cero, significa que forman un ángulo perfecto de 90 grados." 
-          :requiredReps="2" 
-        />
-      </div>
-
-      <header class="mb-6 mt-12">
-        <h2 class="text-2xl font-bold text-app-text">Traductor de Símbolos</h2>
-      </header>
-
-      <SymbolExplainer 
-        symbol="\vec{u} \cdot \vec{v} = 0" 
-        name="Vectores Ortogonales" 
-        translation="Significa: 'Estamos cruzados formando una T'." 
-        usage="Si la multiplicación de sus coordenadas da 0, es la prueba definitiva de que son perpendiculares (ortogonales)."
-        :cases="[
-          { valid: true, math: '(1,0) \\cdot (0,1) = (1\\times0) + (0\\times1) = 0', explanation: 'Correcto. El eje X es perpendicular al eje Y.' }
-        ]"
-        quizQuestion="¿Qué pasa si el producto punto da un número negativo?"
-        :quizOptions="[
-          { id: 1, text: 'Significa que los vectores apuntan en direcciones opuestas (ángulo mayor a 90°).', correct: true },
-          { id: 2, text: 'Significa que calculaste mal.', correct: false }
-        ]"
-      />
-    </section>
+    <StepByStepExercise :exerciseSteps="moduleSteps" nextModuleRoute="/modulo/5-3" />
   </div>
 </template>
 
 <script setup>
 import MathFormula from '../components/MathFormula.vue'
-import TypingDrill from '../components/TypingDrill.vue'
-import SymbolExplainer from '../components/SymbolExplainer.vue'
+import StepByStepExercise from '../components/StepByStepExercise.vue'
+import VectorInteractive from '../components/VectorInteractive.vue'
+
+const moduleSteps = [
+  {
+    title: 'Desafío Interactivo: El Radar Invisible',
+    question: 'Para ser "invisible" al radar enemigo (Vector verde), tu dron (Vector azul) debe cruzar su campo exactamente a 90 grados. Arrastra tu dron hasta que el panel marque que el Producto Punto es CERO exacto.',
+    needsDiagram: false,
+    interactiveComponent: VectorInteractive,
+    interactiveData: {
+      mode: 'dot',
+      message: 'Intenta poner los vectores cruzados para anular el Producto Punto a 0.',
+      initialU: { x: 3, y: 4 },
+      initialV: { x: 6, y: 0 }
+    },
+    options: [
+      { id: 1, text: '¡Lo logré! Al ponerlos como una "T" o "L", el ángulo es 90° y el producto es Cero.', isMath: false, correct: true },
+      { id: 2, text: 'Me da un número muy grande negativo.', isMath: false, correct: false }
+    ]
+  },
+  {
+    title: 'Vectores Opuestos',
+    question: 'Si arrastras el vector azul para que apunte en dirección totalmente opuesta al verde (hacia la izquierda, ángulo de 180°)... ¿Qué pasa con el Producto Punto?',
+    needsDiagram: false,
+    options: [
+      { id: 1, text: 'Se vuelve cero absoluto.', isMath: false, correct: false },
+      { id: 2, text: 'Se vuelve el número NEGATIVO más grande posible (Empujas en contra).', isMath: false, correct: true }
+    ]
+  }
+]
 </script>
