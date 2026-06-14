@@ -128,9 +128,17 @@ const handleDiagramCompleted = (stepIndex) => {
   diagramCompleted.value[stepIndex] = true
 }
 
+const isProcessing = ref(false)
+
 const checkAnswer = (isCorrect) => {
+  if (isProcessing.value) return;
+
   if (isCorrect) {
-    currentStep.value++
+    isProcessing.value = true;
+    currentStep.value++;
+    setTimeout(() => {
+      isProcessing.value = false;
+    }, 500);
   } else {
     alert("Respuesta incorrecta. Analiza bien antes de hacer clic y vuelve a intentarlo.")
   }

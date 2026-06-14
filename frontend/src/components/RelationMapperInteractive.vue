@@ -109,7 +109,7 @@ const props = defineProps({
   initialCompositions: { type: Array, default: () => [] } // Relaciones directas de A a C
 })
 
-const emit = defineEmits(['goal-reached', 'item-clicked'])
+const emit = defineEmits(['goal-reached', 'item-clicked', 'completed'])
 
 const columns = ref([])
 const connections = ref([])
@@ -201,6 +201,7 @@ const onItemClick = (item) => {
             compositionVisible.value = true;
             gameMessage.value = "¡Mira la línea punteada! Esa es la COMPOSICIÓN (Vuelo directo de A hacia C).";
             emit('goal-reached');
+            emit('completed');
           }, 800)
         }
       }
@@ -208,7 +209,8 @@ const onItemClick = (item) => {
   })
 
   if (props.mode === 'view' && hasPath) {
-    gameMessage.value = `¡El Dominio (Origen) es de donde sale la flecha, y el Rango (Destino) a donde llega!`;
+    gameMessage.value = `¡El Dominio (Origen) es de donde sale la flecha, y el Rango (Destino) a donde llega! Baja para responder 👇`;
+    emit('completed');
   }
 }
 
