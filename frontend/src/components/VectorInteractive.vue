@@ -1,16 +1,8 @@
 <template>
-  <div class="vector-interactive-container bg-[#050B14] border-2 border-[#1E293B] rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] select-none relative w-full aspect-video"
-       @mousemove="onMouseMove"
-       @mouseup="onMouseUp"
-       @mouseleave="onMouseUp"
-       @touchmove.prevent="onTouchMove"
-       @touchend="onMouseUp">
+  <div class="vector-interactive-container flex flex-col bg-[#050B14] border-2 border-[#1E293B] rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] select-none w-full">
     
-    <!-- Background Gradient (Radar vibe) -->
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#0f172a]/40 via-[#050B14]/80 to-[#050B14] pointer-events-none"></div>
-
-    <!-- Info Panel -->
-    <div class="absolute top-4 left-4 right-4 bg-[#0B1221]/80 backdrop-blur-md border border-[#334155]/50 p-4 rounded-xl z-10 pointer-events-none flex flex-col md:flex-row justify-between gap-4 shadow-xl">
+    <!-- Info Panel (Ahora ocupa su propio espacio arriba y NO flota sobre los vectores) -->
+    <div class="bg-[#0B1221] border-b border-[#1E293B] p-4 z-20 flex flex-col md:flex-row justify-between gap-4 shadow-xl">
       <div class="text-white text-sm font-medium flex flex-col justify-center">
         <div class="flex items-center gap-3 mb-2">
           <span class="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)]"></span>
@@ -39,25 +31,36 @@
       </div>
     </div>
 
-    <!-- Controles extra para modo paramétrico -->
-    <div v-if="mode === 'parametric'" class="absolute bottom-4 left-4 right-4 bg-[#0B1221]/80 backdrop-blur-md border border-[#334155]/50 p-4 rounded-xl z-10 shadow-xl">
-      <div class="flex flex-col gap-3">
-        <label class="text-white text-sm font-bold flex justify-between items-center">
-          <span class="tracking-widest uppercase text-xs text-app-text-muted">Parámetro de tiempo (t)</span>
-          <span class="text-app-primary font-mono bg-app-primary/10 px-2 py-1 rounded text-lg">{{ tParam.toFixed(1) }}s</span>
-        </label>
-        <input type="range" min="-5" max="5" step="0.1" v-model.number="tParam" class="w-full accent-app-primary pointer-events-auto h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer">
-      </div>
-    </div>
+    <!-- Contenedor del Lienzo SVG -->
+    <div class="relative w-full aspect-video"
+         @mousemove="onMouseMove"
+         @mouseup="onMouseUp"
+         @mouseleave="onMouseUp"
+         @touchmove.prevent="onTouchMove"
+         @touchend="onMouseUp">
+      
+      <!-- Background Gradient (Radar vibe) -->
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#0f172a]/40 via-[#050B14]/80 to-[#050B14] pointer-events-none"></div>
 
-    <!-- Mensaje UI -->
-    <div v-if="message" :class="[
-      'absolute left-1/2 -translate-x-1/2 bg-[#0B1221]/90 backdrop-blur-md border border-[#334155] text-app-text-muted px-4 py-2 rounded-full text-center text-xs font-medium z-20 shadow-lg max-w-[90%] flex items-center gap-2 pointer-events-none',
-      mode === 'parametric' ? 'bottom-28' : 'bottom-6'
-    ]">
-      <span class="text-app-primary">💡</span> 
-      <span>{{ message }}</span>
-    </div>
+      <!-- Controles extra para modo paramétrico -->
+      <div v-if="mode === 'parametric'" class="absolute bottom-4 left-4 right-4 bg-[#0B1221]/90 backdrop-blur-md border border-[#334155]/50 p-4 rounded-xl z-20 shadow-xl">
+        <div class="flex flex-col gap-3">
+          <label class="text-white text-sm font-bold flex justify-between items-center">
+            <span class="tracking-widest uppercase text-xs text-app-text-muted">Parámetro de tiempo (t)</span>
+            <span class="text-app-primary font-mono bg-app-primary/10 px-2 py-1 rounded text-lg">{{ tParam.toFixed(1) }}s</span>
+          </label>
+          <input type="range" min="-5" max="5" step="0.1" v-model.number="tParam" class="w-full accent-app-primary pointer-events-auto h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Mensaje UI -->
+      <div v-if="message" :class="[
+        'absolute left-1/2 -translate-x-1/2 bg-[#0B1221]/90 backdrop-blur-md border border-[#334155] text-app-text-muted px-4 py-2 rounded-full text-center text-xs font-medium z-20 shadow-lg max-w-[90%] flex items-center gap-2 pointer-events-none',
+        mode === 'parametric' ? 'bottom-28' : 'bottom-6'
+      ]">
+        <span class="text-app-primary">💡</span> 
+        <span>{{ message }}</span>
+      </div>
 
     <!-- Lienzo SVG (Ratio 1:1, Slice mode para llenar sin deformar) -->
     <svg width="100%" height="100%" class="cursor-crosshair absolute inset-0" viewBox="-12 -12 24 24" preserveAspectRatio="xMidYMid slice">
@@ -175,6 +178,7 @@
         <path :d="angleSectorPath" fill="#fcd34d" opacity="0.1" />
       </g>
     </svg>
+    </div>
   </div>
 </template>
 
