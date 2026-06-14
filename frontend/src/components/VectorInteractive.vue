@@ -50,10 +50,13 @@
       </div>
     </div>
 
-    <!-- Mensaje UI superior -->
-    <div v-if="message" class="absolute top-24 left-1/2 -translate-x-1/2 bg-app-bg/95 backdrop-blur-xl border-2 border-app-primary text-white px-8 py-4 rounded-2xl text-center text-sm font-bold z-20 shadow-[0_0_40px_rgba(168,85,247,0.6)] max-w-[80%] flex items-center gap-3">
-      <span class="text-2xl animate-bounce">💡</span> 
-      <span class="text-base tracking-wide">{{ message }}</span>
+    <!-- Mensaje UI -->
+    <div v-if="message" :class="[
+      'absolute left-1/2 -translate-x-1/2 bg-[#0B1221]/90 backdrop-blur-md border border-[#334155] text-app-text-muted px-4 py-2 rounded-full text-center text-xs font-medium z-20 shadow-lg max-w-[90%] flex items-center gap-2 pointer-events-none',
+      mode === 'parametric' ? 'bottom-28' : 'bottom-6'
+    ]">
+      <span class="text-app-primary">💡</span> 
+      <span>{{ message }}</span>
     </div>
 
     <!-- Lienzo SVG (Ratio 1:1, Slice mode para llenar sin deformar) -->
