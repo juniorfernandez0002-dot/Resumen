@@ -51,13 +51,13 @@
     </div>
 
     <!-- Mensaje UI superior -->
-    <div v-if="message" class="absolute top-32 left-1/2 -translate-x-1/2 bg-app-primary/20 backdrop-blur-sm border border-app-primary/50 text-app-primary-light px-6 py-2 rounded-full text-center text-sm font-bold z-10 pointer-events-none shadow-[0_0_20px_rgba(168,85,247,0.2)] animate-pulse">
-      {{ message }}
+    <div v-if="message" class="absolute top-24 left-1/2 -translate-x-1/2 bg-app-bg/95 backdrop-blur-xl border-2 border-app-primary text-white px-8 py-4 rounded-2xl text-center text-sm font-bold z-20 shadow-[0_0_40px_rgba(168,85,247,0.6)] max-w-[80%] flex items-center gap-3">
+      <span class="text-2xl animate-bounce">💡</span> 
+      <span class="text-base tracking-wide">{{ message }}</span>
     </div>
 
-    <!-- Lienzo SVG (16:9 Aspect Ratio) -->
-    <!-- viewBox: X from -16 to 16 (width 32), Y from -9 to 9 (height 18) -->
-    <svg width="100%" height="100%" class="cursor-crosshair absolute inset-0" viewBox="-16 -9 32 18" preserveAspectRatio="xMidYMid slice">
+    <!-- Lienzo SVG (Ratio 1:1, Slice mode para llenar sin deformar) -->
+    <svg width="100%" height="100%" class="cursor-crosshair absolute inset-0" viewBox="-12 -12 24 24" preserveAspectRatio="xMidYMid slice">
       <defs>
         <!-- Glow filters -->
         <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%">
@@ -97,22 +97,21 @@
         </marker>
       </defs>
 
-      <!-- Grilla (Adaptada a 32x18) -->
-      <g class="grid-lines" opacity="0.3">
-        <!-- Verticales -->
-        <line v-for="i in 33" :key="'v'+i" :x1="(i-17)" y1="-9" :x2="(i-17)" y2="9" stroke="#1E293B" stroke-width="0.05" />
-        <!-- Horizontales -->
-        <line v-for="i in 19" :key="'h'+i" x1="-16" :y1="(i-10)" x2="16" :y2="(i-10)" stroke="#1E293B" stroke-width="0.05" />
+      <!-- Grilla Infinita (Adaptada de -50 a 50 para que nunca se acabe en slice) -->
+      <g class="grid-lines" opacity="0.4">
+        <!-- Verticales y Horizontales (Unidades) -->
+        <line v-for="i in 101" :key="'v'+i" :x1="(i-51)" y1="-50" :x2="(i-51)" y2="50" stroke="#1E293B" stroke-width="0.05" />
+        <line v-for="i in 101" :key="'h'+i" x1="-50" :y1="(i-51)" x2="50" :y2="(i-51)" stroke="#1E293B" stroke-width="0.05" />
         
         <!-- Líneas maestras cada 5 unidades -->
-        <line v-for="i in 7" :key="'vm'+i" :x1="(i-4)*5" y1="-9" :x2="(i-4)*5" y2="9" stroke="#334155" stroke-width="0.1" />
-        <line v-for="i in 3" :key="'hm'+i" x1="-16" :y1="(i-2)*5" x2="16" :y2="(i-2)*5" stroke="#334155" stroke-width="0.1" />
+        <line v-for="i in 21" :key="'vm'+i" :x1="(i-11)*5" y1="-50" :x2="(i-11)*5" y2="50" stroke="#334155" stroke-width="0.1" />
+        <line v-for="i in 21" :key="'hm'+i" x1="-50" :y1="(i-11)*5" x2="50" :y2="(i-11)*5" stroke="#334155" stroke-width="0.1" />
       </g>
 
       <!-- Ejes X e Y Centrales -->
-      <line x1="-16" y1="0" x2="16" y2="0" stroke="#475569" stroke-width="0.15" />
-      <line x1="0" y1="-9" x2="0" y2="9" stroke="#475569" stroke-width="0.15" />
-      <circle cx="0" cy="0" r="0.15" fill="#94A3B8" />
+      <line x1="-50" y1="0" x2="50" y2="0" stroke="#475569" stroke-width="0.15" />
+      <line x1="0" y1="-50" x2="0" y2="50" stroke="#475569" stroke-width="0.15" />
+      <circle cx="0" cy="0" r="0.2" fill="#cbd5e1" />
 
       <!-- Modo: SUMA (Paralelogramo) -->
       <g v-if="mode === 'sum'" class="sum-mode">
@@ -126,7 +125,7 @@
       <!-- Modo: PROYECCION o DOT -->
       <g v-if="mode === 'projection' || mode === 'dot'" class="proj-mode">
         <!-- Línea infinita de v -->
-        <line :x1="-v.x * 20" :y1="v.y * 20" :x2="v.x * 20" :y2="-v.y * 20" stroke="#22c55e" stroke-width="0.03" opacity="0.4" stroke-dasharray="0.5,0.5" />
+        <line :x1="-v.x * 50" :y1="v.y * 50" :x2="v.x * 50" :y2="-v.y * 50" stroke="#22c55e" stroke-width="0.03" opacity="0.4" stroke-dasharray="0.5,0.5" />
         <!-- Línea ortogonal desde u hasta v -->
         <line :x1="u.x" :y1="-u.y" :x2="projUonV.x" :y2="-projUonV.y" stroke="#ef4444" stroke-width="0.1" stroke-dasharray="0.2,0.2" opacity="0.8" />
         <!-- Sombra -->
@@ -135,7 +134,7 @@
 
       <!-- Modo: PARAMÉTRICO -->
       <g v-if="mode === 'parametric'" class="param-mode">
-        <line :x1="u.x - v.x * 20" :y1="-(u.y - v.y * 20)" :x2="u.x + v.x * 20" :y2="-(u.y + v.y * 20)" stroke="#475569" stroke-width="0.08" stroke-dasharray="0.5,0.5" />
+        <line :x1="u.x - v.x * 50" :y1="-(u.y - v.y * 50)" :x2="u.x + v.x * 50" :y2="-(u.y + v.y * 50)" stroke="#475569" stroke-width="0.08" stroke-dasharray="0.5,0.5" />
         <!-- Vector Velocidad v dibujado desde P_0 -->
         <line :x1="u.x" :y1="-u.y" :x2="u.x + v.x * tParam" :y2="-(u.y + v.y * tParam)" stroke="#a855f7" stroke-width="0.25" marker-end="url(#arrow-purple)" />
         <!-- Resultante r(t) -->
@@ -194,7 +193,7 @@ const u = ref({ x: props.initialU.x, y: props.initialU.y })
 const v = ref({ x: props.initialV.x, y: props.initialV.y })
 const tParam = ref(1.0)
 
-const minX = -16, maxX = 16, minY = -9, maxY = 9
+const minX = -50, maxX = 50, minY = -50, maxY = 50
 const activeDrag = ref(null)
 
 const magnitude = (vec) => Math.sqrt(vec.x * vec.x + vec.y * vec.y)
