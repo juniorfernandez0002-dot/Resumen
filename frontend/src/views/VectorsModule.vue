@@ -36,7 +36,7 @@
       </header>
 
       <SymbolExplainer 
-        symbol="||\vec{v}||" 
+        symbol="||\\vec{v}||" 
         name="Magnitud (Norma) del Vector" 
         translation="Significa: ¿Cuánto mide la flecha si saco una cinta métrica?" 
         usage="Se calcula usando el Teorema de Pitágoras con las coordenadas del vector."

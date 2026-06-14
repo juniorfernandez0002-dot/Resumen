@@ -7,7 +7,9 @@
       <!-- Bloque del Símbolo Gigante -->
       <div class="bg-app-bg p-8 flex items-center justify-center min-w-[150px] border-b md:border-b-0 md:border-r border-[#334155] relative overflow-hidden group">
         <div class="absolute inset-0 bg-app-primary/5 group-hover:bg-app-primary/10 transition-colors"></div>
-        <span class="text-6xl font-black text-app-primary font-serif drop-shadow-md z-10">{{ symbol }}</span>
+        <div class="text-5xl md:text-6xl text-app-primary drop-shadow-md z-10 flex items-center justify-center">
+          <MathFormula :math="symbol" />
+        </div>
       </div>
       
       <!-- Información Principal -->
@@ -36,12 +38,14 @@
           <span>🎯</span> Ejemplos Rápidos
         </h3>
         <ul class="space-y-2">
-          <li v-for="(c, i) in cases" :key="i" class="text-sm flex items-start gap-2 bg-[#0f172a] p-2 rounded-lg border border-[#334155]">
-            <span v-if="c.valid" class="text-green-400 mt-0.5">✅</span>
-            <span v-else class="text-red-400 mt-0.5">❌</span>
-            <div>
-              <span class="font-bold font-mono text-white">{{ c.math }}</span>
-              <p class="text-xs text-app-text-muted mt-1">{{ c.explanation }}</p>
+          <li v-for="(c, i) in cases" :key="i" class="text-sm flex items-start gap-2 bg-[#0f172a] p-3 rounded-lg border border-[#334155]">
+            <span v-if="c.valid" class="text-green-400 mt-1">✅</span>
+            <span v-else class="text-red-400 mt-1">❌</span>
+            <div class="overflow-x-auto w-full">
+              <div class="font-bold text-white mb-2 pb-1 border-b border-[#334155]/50 inline-block w-full">
+                <MathFormula :math="c.math" />
+              </div>
+              <p class="text-xs text-app-text-muted mt-1 leading-relaxed">{{ c.explanation }}</p>
             </div>
           </li>
         </ul>
@@ -87,6 +91,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import MathFormula from './MathFormula.vue'
 
 const props = defineProps({
   symbol: { type: String, required: true },

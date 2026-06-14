@@ -37,7 +37,7 @@
       </header>
 
       <SymbolExplainer 
-        symbol="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" 
+        symbol="\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1" 
         name="Ecuación de la Elipse (Centrada)" 
         translation="Significa: 'Estírate 'a' hacia los lados, y 'b' hacia arriba/abajo'." 
         usage="Si 'a' es mayor que 'b', el huevo está acostado. Si 'b' es mayor que 'a', el huevo está parado."

@@ -36,12 +36,12 @@
       </header>
 
       <SymbolExplainer 
-        symbol="\vec{u} \cdot (\vec{v} \times \vec{w})" 
+        symbol="\\vec{u} \\cdot (\\vec{v} \\times \\vec{w})" 
         name="Volumen del Paralelepípedo" 
         translation="Significa: 'Calcula el volumen de la caja 3D deformada'." 
         usage="Mezcla el producto punto y el producto cruz. El resultado numérico es el volumen físico de la figura que forman los 3 vectores."
         :cases="[
-          { valid: true, math: '\vec{u} \cdot (\vec{v} \times \vec{w}) = 0', explanation: 'Si da cero, significa que la caja está totalmente aplastada (los 3 vectores están en el mismo plano 2D).' }
+          { valid: true, math: '\\vec{u} \\cdot (\\vec{v} \\times \\vec{w}) = 0', explanation: 'Si da cero, significa que la caja está totalmente aplastada (los 3 vectores están en el mismo plano 2D).' }
         ]"
         quizQuestion="Si el Triple Producto da cero, ¿qué podemos concluir?"
         :quizOptions="[
