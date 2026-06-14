@@ -36,7 +36,7 @@
       </header>
 
       <SymbolExplainer 
-        symbol="\\vec{u} \\cdot (\\vec{v} \\times \\vec{w})" 
+        symbol="\vec{u} \cdot (\vec{v} \times \vec{w})" 
         name="Volumen del Paralelepípedo" 
         translation="Significa: 'Calcula el volumen de la caja 3D deformada'." 
         usage="Mezcla el producto punto y el producto cruz. El resultado numérico es el volumen físico de la figura que forman los 3 vectores."

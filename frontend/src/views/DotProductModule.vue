@@ -36,7 +36,7 @@
       </header>
 
       <SymbolExplainer 
-        symbol="\\vec{u} \\cdot \\vec{v} = 0" 
+        symbol="\vec{u} \cdot \vec{v} = 0" 
         name="Vectores Ortogonales" 
         translation="Significa: 'Estamos cruzados formando una T'." 
         usage="Si la multiplicación de sus coordenadas da 0, es la prueba definitiva de que son perpendiculares (ortogonales)."

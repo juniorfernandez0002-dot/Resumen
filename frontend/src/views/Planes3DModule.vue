@@ -36,7 +36,7 @@
       </header>
 
       <SymbolExplainer 
-        symbol="\\vec{n} \\cdot (\\vec{r} - P_0) = 0" 
+        symbol="\vec{n} \cdot (\vec{r} - P_0) = 0" 
         name="Ecuación Vectorial del Plano" 
         translation="Significa: 'El palo está a 90 grados de cualquier línea dibujada en la hoja'." 
         usage="Usa el Producto Punto. Si cualquier vector en la hoja se multiplica por el vector Normal (palo), siempre debe dar CERO porque son ortogonales."
