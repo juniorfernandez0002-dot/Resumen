@@ -1,128 +1,177 @@
 <template>
-  <div class="vector-interactive-container bg-app-bg border border-[#334155] rounded-xl overflow-hidden shadow-lg select-none relative"
+  <div class="vector-interactive-container bg-[#050B14] border-2 border-[#1E293B] rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] select-none relative w-full aspect-video"
        @mousemove="onMouseMove"
        @mouseup="onMouseUp"
        @mouseleave="onMouseUp"
        @touchmove.prevent="onTouchMove"
        @touchend="onMouseUp">
     
+    <!-- Background Gradient (Radar vibe) -->
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#0f172a]/40 via-[#050B14]/80 to-[#050B14] pointer-events-none"></div>
+
     <!-- Info Panel -->
-    <div class="absolute top-4 left-4 right-4 bg-[#0f172a]/90 backdrop-blur border border-[#334155] p-4 rounded-lg z-10 pointer-events-none flex flex-col md:flex-row justify-between gap-4">
-      <div class="text-white text-sm font-medium">
-        <div class="flex items-center gap-2 mb-1">
-          <span class="w-3 h-3 rounded-full bg-blue-500"></span>
-          <span>Vector <span class="font-bold text-blue-400">\vec{u}</span>: 
-            ({{ u.x.toFixed(1) }}, {{ u.y.toFixed(1) }})
+    <div class="absolute top-4 left-4 right-4 bg-[#0B1221]/80 backdrop-blur-md border border-[#334155]/50 p-4 rounded-xl z-10 pointer-events-none flex flex-col md:flex-row justify-between gap-4 shadow-xl">
+      <div class="text-white text-sm font-medium flex flex-col justify-center">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)]"></span>
+          <span class="font-mono text-blue-100">
+            Vector <span class="font-bold text-blue-400">u</span>: 
+            <span class="text-blue-300">[{{ u.x.toFixed(1) }}, {{ u.y.toFixed(1) }}]</span>
           </span>
-          <span class="text-app-text-muted ml-2">Magnitud: {{ magnitude(u).toFixed(2) }}</span>
+          <span class="text-blue-500/50">|</span>
+          <span class="text-blue-200">Mag: {{ magnitude(u).toFixed(2) }}</span>
         </div>
-        <div class="flex items-center gap-2">
-          <span class="w-3 h-3 rounded-full bg-green-500"></span>
-          <span>Vector <span class="font-bold text-green-400">\vec{v}</span>: 
-            ({{ v.x.toFixed(1) }}, {{ v.y.toFixed(1) }})
+        <div class="flex items-center gap-3">
+          <span class="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.8)]"></span>
+          <span class="font-mono text-green-100">
+            Vector <span class="font-bold text-green-400">v</span>: 
+            <span class="text-green-300">[{{ v.x.toFixed(1) }}, {{ v.y.toFixed(1) }}]</span>
           </span>
-          <span class="text-app-text-muted ml-2">Magnitud: {{ magnitude(v).toFixed(2) }}</span>
+          <span class="text-green-500/50">|</span>
+          <span class="text-green-200">Mag: {{ magnitude(v).toFixed(2) }}</span>
         </div>
       </div>
 
-      <div class="text-app-primary text-sm font-bold bg-[#1e293b] px-4 py-2 rounded-md border border-[#334155] flex flex-col items-center justify-center min-w-[150px]">
-        <span class="text-xs uppercase tracking-wider text-app-text-muted mb-1">{{ modeTitle }}</span>
-        <span class="text-lg">{{ modeResult }}</span>
+      <div class="bg-[#050B14] px-6 py-2 rounded-lg border border-[#1E293B] flex flex-col items-center justify-center min-w-[180px] shadow-inner relative overflow-hidden group">
+        <div class="absolute inset-0 bg-app-primary/5 group-hover:bg-app-primary/10 transition-colors"></div>
+        <span class="text-xs uppercase tracking-widest text-app-text-muted mb-1 font-bold">{{ modeTitle }}</span>
+        <span class="text-xl font-black text-app-primary font-mono drop-shadow-[0_0_8px_rgba(168,85,247,0.5)]">{{ modeResult }}</span>
       </div>
     </div>
 
     <!-- Controles extra para modo paramétrico -->
-    <div v-if="mode === 'parametric'" class="absolute bottom-4 left-4 right-4 bg-[#0f172a]/90 backdrop-blur border border-[#334155] p-4 rounded-lg z-10">
-      <div class="flex flex-col gap-2">
-        <label class="text-white text-sm font-bold flex justify-between">
-          <span>Parámetro de tiempo 't'</span>
-          <span class="text-app-primary">{{ tParam.toFixed(1) }}s</span>
+    <div v-if="mode === 'parametric'" class="absolute bottom-4 left-4 right-4 bg-[#0B1221]/80 backdrop-blur-md border border-[#334155]/50 p-4 rounded-xl z-10 shadow-xl">
+      <div class="flex flex-col gap-3">
+        <label class="text-white text-sm font-bold flex justify-between items-center">
+          <span class="tracking-widest uppercase text-xs text-app-text-muted">Parámetro de tiempo (t)</span>
+          <span class="text-app-primary font-mono bg-app-primary/10 px-2 py-1 rounded text-lg">{{ tParam.toFixed(1) }}s</span>
         </label>
-        <input type="range" min="-3" max="3" step="0.1" v-model.number="tParam" class="w-full accent-app-primary pointer-events-auto">
+        <input type="range" min="-5" max="5" step="0.1" v-model.number="tParam" class="w-full accent-app-primary pointer-events-auto h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer">
       </div>
     </div>
 
     <!-- Mensaje UI superior -->
-    <div v-if="message" class="absolute top-28 left-4 right-4 bg-app-primary/10 border border-app-primary/30 text-app-primary-light px-4 py-2 rounded text-center text-sm font-medium z-10 pointer-events-none">
+    <div v-if="message" class="absolute top-32 left-1/2 -translate-x-1/2 bg-app-primary/20 backdrop-blur-sm border border-app-primary/50 text-app-primary-light px-6 py-2 rounded-full text-center text-sm font-bold z-10 pointer-events-none shadow-[0_0_20px_rgba(168,85,247,0.2)] animate-pulse">
       {{ message }}
     </div>
 
-    <!-- Lienzo SVG -->
-    <svg :width="width" :height="height" class="w-full h-auto cursor-crosshair" viewBox="-10 -10 20 20" style="overflow: visible;">
+    <!-- Lienzo SVG (16:9 Aspect Ratio) -->
+    <!-- viewBox: X from -16 to 16 (width 32), Y from -9 to 9 (height 18) -->
+    <svg width="100%" height="100%" class="cursor-crosshair absolute inset-0" viewBox="-16 -9 32 18" preserveAspectRatio="xMidYMid slice">
       <defs>
-        <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" />
+        <!-- Glow filters -->
+        <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="0.4" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <filter id="glow-green" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="0.4" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <filter id="glow-red" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="0.4" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+
+        <!-- Arrowheads -->
+        <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M 0 1 L 8 5 L 0 9 z" fill="#3b82f6" />
         </marker>
-        <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M 0 0 L 10 5 L 0 10 z" fill="#22c55e" />
+        <marker id="arrow-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M 0 1 L 8 5 L 0 9 z" fill="#22c55e" />
         </marker>
-        <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M 0 0 L 10 5 L 0 10 z" fill="#ef4444" />
+        <marker id="arrow-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M 0 1 L 8 5 L 0 9 z" fill="#ef4444" />
         </marker>
-        <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M 0 0 L 10 5 L 0 10 z" fill="#a855f7" />
+        <marker id="arrow-purple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M 0 1 L 8 5 L 0 9 z" fill="#a855f7" />
         </marker>
       </defs>
 
-      <!-- Grilla -->
-      <g class="grid-lines">
-        <line v-for="i in 21" :key="'v'+i" :x1="(i-11)" y1="-10" :x2="(i-11)" y2="10" stroke="#334155" stroke-width="0.05" />
-        <line v-for="i in 21" :key="'h'+i" x1="-10" :y1="(i-11)" x2="10" :y2="(i-11)" stroke="#334155" stroke-width="0.05" />
+      <!-- Grilla (Adaptada a 32x18) -->
+      <g class="grid-lines" opacity="0.3">
+        <!-- Verticales -->
+        <line v-for="i in 33" :key="'v'+i" :x1="(i-17)" y1="-9" :x2="(i-17)" y2="9" stroke="#1E293B" stroke-width="0.05" />
+        <!-- Horizontales -->
+        <line v-for="i in 19" :key="'h'+i" x1="-16" :y1="(i-10)" x2="16" :y2="(i-10)" stroke="#1E293B" stroke-width="0.05" />
+        
+        <!-- Líneas maestras cada 5 unidades -->
+        <line v-for="i in 7" :key="'vm'+i" :x1="(i-4)*5" y1="-9" :x2="(i-4)*5" y2="9" stroke="#334155" stroke-width="0.1" />
+        <line v-for="i in 3" :key="'hm'+i" x1="-16" :y1="(i-2)*5" x2="16" :y2="(i-2)*5" stroke="#334155" stroke-width="0.1" />
       </g>
 
-      <!-- Ejes X e Y -->
-      <line x1="-10" y1="0" x2="10" y2="0" stroke="#64748b" stroke-width="0.1" />
-      <line x1="0" y1="-10" x2="0" y2="10" stroke="#64748b" stroke-width="0.1" />
+      <!-- Ejes X e Y Centrales -->
+      <line x1="-16" y1="0" x2="16" y2="0" stroke="#475569" stroke-width="0.15" />
+      <line x1="0" y1="-9" x2="0" y2="9" stroke="#475569" stroke-width="0.15" />
+      <circle cx="0" cy="0" r="0.15" fill="#94A3B8" />
 
       <!-- Modo: SUMA (Paralelogramo) -->
       <g v-if="mode === 'sum'" class="sum-mode">
         <!-- Proyecciones -->
-        <line :x1="u.x" :y1="-u.y" :x2="u.x + v.x" :y2="-(u.y + v.y)" stroke="#64748b" stroke-width="0.08" stroke-dasharray="0.2,0.2" />
-        <line :x1="v.x" :y1="-v.y" :x2="u.x + v.x" :y2="-(u.y + v.y)" stroke="#64748b" stroke-width="0.08" stroke-dasharray="0.2,0.2" />
+        <line :x1="u.x" :y1="-u.y" :x2="u.x + v.x" :y2="-(u.y + v.y)" stroke="#64748b" stroke-width="0.1" stroke-dasharray="0.3,0.3" />
+        <line :x1="v.x" :y1="-v.y" :x2="u.x + v.x" :y2="-(u.y + v.y)" stroke="#64748b" stroke-width="0.1" stroke-dasharray="0.3,0.3" />
         <!-- Resultante -->
-        <line x1="0" y1="0" :x2="u.x + v.x" :y2="-(u.y + v.y)" stroke="#ef4444" stroke-width="0.2" marker-end="url(#arrow-red)" />
+        <line x1="0" y1="0" :x2="u.x + v.x" :y2="-(u.y + v.y)" stroke="#ef4444" stroke-width="0.25" marker-end="url(#arrow-red)" filter="url(#glow-red)" />
       </g>
 
       <!-- Modo: PROYECCION o DOT -->
       <g v-if="mode === 'projection' || mode === 'dot'" class="proj-mode">
         <!-- Línea infinita de v -->
-        <line :x1="-v.x * 10" :y1="v.y * 10" :x2="v.x * 10" :y2="-v.y * 10" stroke="#22c55e" stroke-width="0.02" opacity="0.3" />
+        <line :x1="-v.x * 20" :y1="v.y * 20" :x2="v.x * 20" :y2="-v.y * 20" stroke="#22c55e" stroke-width="0.03" opacity="0.4" stroke-dasharray="0.5,0.5" />
         <!-- Línea ortogonal desde u hasta v -->
-        <line :x1="u.x" :y1="-u.y" :x2="projUonV.x" :y2="-projUonV.y" stroke="#ef4444" stroke-width="0.08" stroke-dasharray="0.2,0.2" />
+        <line :x1="u.x" :y1="-u.y" :x2="projUonV.x" :y2="-projUonV.y" stroke="#ef4444" stroke-width="0.1" stroke-dasharray="0.2,0.2" opacity="0.8" />
         <!-- Sombra -->
-        <line x1="0" y1="0" :x2="projUonV.x" :y2="-projUonV.y" stroke="#a855f7" stroke-width="0.25" marker-end="url(#arrow-purple)" />
+        <line x1="0" y1="0" :x2="projUonV.x" :y2="-projUonV.y" stroke="#a855f7" stroke-width="0.3" marker-end="url(#arrow-purple)" />
       </g>
 
       <!-- Modo: PARAMÉTRICO -->
       <g v-if="mode === 'parametric'" class="param-mode">
-        <line :x1="u.x - v.x * 10" :y1="-(u.y - v.y * 10)" :x2="u.x + v.x * 10" :y2="-(u.y + v.y * 10)" stroke="#64748b" stroke-width="0.05" opacity="0.5" />
-        <line :x1="u.x" :y1="-u.y" :x2="u.x + v.x * tParam" :y2="-(u.y + v.y * tParam)" stroke="#a855f7" stroke-width="0.2" marker-end="url(#arrow-purple)" />
-        <line x1="0" y1="0" :x2="u.x + v.x * tParam" :y2="-(u.y + v.y * tParam)" stroke="#ef4444" stroke-width="0.15" marker-end="url(#arrow-red)" stroke-dasharray="0.3,0.3" />
-        <circle :cx="u.x + v.x * tParam" :cy="-(u.y + v.y * tParam)" r="0.3" fill="#ef4444" />
+        <line :x1="u.x - v.x * 20" :y1="-(u.y - v.y * 20)" :x2="u.x + v.x * 20" :y2="-(u.y + v.y * 20)" stroke="#475569" stroke-width="0.08" stroke-dasharray="0.5,0.5" />
+        <!-- Vector Velocidad v dibujado desde P_0 -->
+        <line :x1="u.x" :y1="-u.y" :x2="u.x + v.x * tParam" :y2="-(u.y + v.y * tParam)" stroke="#a855f7" stroke-width="0.25" marker-end="url(#arrow-purple)" />
+        <!-- Resultante r(t) -->
+        <line x1="0" y1="0" :x2="u.x + v.x * tParam" :y2="-(u.y + v.y * tParam)" stroke="#ef4444" stroke-width="0.15" stroke-dasharray="0.2,0.2" opacity="0.6" />
+        <!-- Partícula -->
+        <circle :cx="u.x + v.x * tParam" :cy="-(u.y + v.y * tParam)" r="0.4" fill="#ef4444" filter="url(#glow-red)" />
       </g>
 
       <!-- Vector V -->
-      <line v-if="mode !== 'parametric'" x1="0" y1="0" :x2="v.x" :y2="-v.y" stroke="#22c55e" stroke-width="0.15" marker-end="url(#arrow-green)" />
-      <line v-if="mode === 'parametric'" :x1="u.x" :y1="-u.y" :x2="u.x + v.x" :y2="-(u.y + v.y)" stroke="#22c55e" stroke-width="0.1" marker-end="url(#arrow-green)" opacity="0.4" />
+      <line v-if="mode !== 'parametric'" x1="0" y1="0" :x2="v.x" :y2="-v.y" stroke="#22c55e" stroke-width="0.25" marker-end="url(#arrow-green)" filter="url(#glow-green)" />
+      <line v-if="mode === 'parametric'" :x1="u.x" :y1="-u.y" :x2="u.x + v.x" :y2="-(u.y + v.y)" stroke="#22c55e" stroke-width="0.15" marker-end="url(#arrow-green)" opacity="0.5" />
 
       <!-- Vector U -->
-      <line x1="0" y1="0" :x2="u.x" :y2="-u.y" stroke="#3b82f6" stroke-width="0.15" marker-end="url(#arrow-blue)" />
+      <line x1="0" y1="0" :x2="u.x" :y2="-u.y" stroke="#3b82f6" stroke-width="0.25" marker-end="url(#arrow-blue)" filter="url(#glow-blue)" />
 
-      <!-- Drag Handles -->
-      <circle :cx="u.x" :cy="-u.y" r="0.6" fill="transparent" stroke="#3b82f6" stroke-width="0.1" 
-              class="cursor-grab hover:fill-[#3b82f6]/30 transition-colors pointer-events-auto"
-              @mousedown="startDrag('u', $event)" @touchstart.prevent="startDrag('u', $event)" />
+      <!-- Drag Handles (Nodos de arrastre premium) -->
+      <g :transform="`translate(${u.x}, ${-u.y})`" class="cursor-pointer pointer-events-auto" @mousedown="startDrag('u', $event)" @touchstart.prevent="startDrag('u', $event)">
+        <circle r="0.8" fill="transparent" class="hover:fill-blue-500/20" />
+        <circle r="0.25" fill="#fff" stroke="#3b82f6" stroke-width="0.15" />
+      </g>
       
-      <circle v-if="mode !== 'parametric'" :cx="v.x" :cy="-v.y" r="0.6" fill="transparent" stroke="#22c55e" stroke-width="0.1" 
-              class="cursor-grab hover:fill-[#22c55e]/30 transition-colors pointer-events-auto"
-              @mousedown="startDrag('v', $event)" @touchstart.prevent="startDrag('v', $event)" />
+      <g v-if="mode !== 'parametric'" :transform="`translate(${v.x}, ${-v.y})`" class="cursor-pointer pointer-events-auto" @mousedown="startDrag('v', $event)" @touchstart.prevent="startDrag('v', $event)">
+        <circle r="0.8" fill="transparent" class="hover:fill-green-500/20" />
+        <circle r="0.25" fill="#fff" stroke="#22c55e" stroke-width="0.15" />
+      </g>
               
-      <circle v-if="mode === 'parametric'" :cx="u.x + v.x" :cy="-(u.y + v.y)" r="0.6" fill="transparent" stroke="#22c55e" stroke-width="0.1" 
-              class="cursor-grab hover:fill-[#22c55e]/30 transition-colors pointer-events-auto"
-              @mousedown="startDrag('v-param', $event)" @touchstart.prevent="startDrag('v-param', $event)" />
+      <g v-if="mode === 'parametric'" :transform="`translate(${u.x + v.x}, ${-(u.y + v.y)})`" class="cursor-pointer pointer-events-auto" @mousedown="startDrag('v-param', $event)" @touchstart.prevent="startDrag('v-param', $event)">
+        <circle r="0.8" fill="transparent" class="hover:fill-green-500/20" />
+        <circle r="0.25" fill="#fff" stroke="#22c55e" stroke-width="0.15" />
+      </g>
 
-      <!-- Ángulo Arc -->
-      <path v-if="mode === 'dot'" :d="angleArcPath" fill="none" stroke="#fcd34d" stroke-width="0.1" />
+      <!-- Ángulo Arc (Mejorado) -->
+      <g v-if="mode === 'dot'">
+        <path :d="angleArcPath" fill="none" stroke="#fcd34d" stroke-width="0.15" />
+        <path :d="angleSectorPath" fill="#fcd34d" opacity="0.1" />
+      </g>
     </svg>
   </div>
 </template>
@@ -145,7 +194,7 @@ const u = ref({ x: props.initialU.x, y: props.initialU.y })
 const v = ref({ x: props.initialV.x, y: props.initialV.y })
 const tParam = ref(1.0)
 
-const minX = -10, maxX = 10, minY = -10, maxY = 10
+const minX = -16, maxX = 16, minY = -9, maxY = 9
 const activeDrag = ref(null)
 
 const magnitude = (vec) => Math.sqrt(vec.x * vec.x + vec.y * vec.y)
@@ -167,12 +216,18 @@ const angleBetween = computed(() => {
   return Math.acos(cosTheta) * (180 / Math.PI)
 })
 
+const angleSectorPath = computed(() => {
+  const d = angleArcPath.value
+  if (!d) return ''
+  return d + ' L 0 0 Z'
+})
+
 const angleArcPath = computed(() => {
   const magU = magnitude(u.value)
   const magV = magnitude(v.value)
   if (magU === 0 || magV === 0) return ''
   
-  const r = 1.5
+  const r = 2.0 // Mayor radio para el arco
   const uNorm = { x: u.value.x / magU, y: u.value.y / magU }
   const vNorm = { x: v.value.x / magV, y: v.value.y / magV }
   
@@ -183,7 +238,7 @@ const angleArcPath = computed(() => {
   
   const crossZ = u.value.x * v.value.y - u.value.y * v.value.x
   const largeArcFlag = angleBetween.value > 180 ? 1 : 0
-  const sweepFlag = crossZ < 0 ? 1 : 0 // Ajustado para correcta dirección de arco
+  const sweepFlag = crossZ < 0 ? 1 : 0 
 
   return `M ${startX} ${startY} A ${r} ${r} 0 ${largeArcFlag} ${sweepFlag} ${endX} ${endY}`
 })
